@@ -2,12 +2,15 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { updateProfile } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const SignUp = () => {
 	const [userEmail, setUserEmail] = useState(null);
 	const [userPassword, setUserPassword] = useState(null);
 	const [TESTmessage, setTESTMessage] = useState(null);
-
+	const [userName, setUserName] = useState(null);
 	const navigateTo = useNavigate();
 
 	const handleChangeEmail = (e) => {
@@ -20,16 +23,44 @@ const SignUp = () => {
 		console.log(userPassword);
 	};
 
+	const handleChangeName = (e) => {
+		setUserName(e.target.value);
+		console.log(userName);
+	};
+
 	const createAccount = (e) => {
 		e.preventDefault();
 		createUserWithEmailAndPassword(auth, userEmail, userPassword)
-			.then((userCredential) => {
+			.then(async (userCredential) => {
 				// Signed in
 				const user = userCredential.user;
 				setTESTMessage("signed in as " + user.uid);
-				navigateTo(`/profile/${user.uid}`);
-				// ...
+				updateProfile(auth.currentUser, {
+					displayName: userName,
+				})
+					.then(() => {
+						// Profile updated!
+						console.log("profile updated!");
+						// ...
+					})
+					.catch((error) => {
+						// An error occurred
+						// ...
+					});
+				try {
+					const docRef = await addDoc(collection(db, "users"), {
+						email: userEmail,
+						name: userName,
+						userId: user.uid,
+					});
+					console.log("Document written with ID: ", docRef.id);
+				} catch (e) {
+					console.error("Error adding document: ", e);
+				}
+				// navigateTo(`/profile/${user.uid}`);
 			})
+			// ...
+
 			.catch((error) => {
 				const errorCode = error.code;
 				setTESTMessage("sign up failed " + errorCode);
@@ -45,10 +76,8 @@ const SignUp = () => {
 				<form style={{ display: "flex", flexDirection: "column" }}>
 					<label htmlFor="email">E-mail</label>
 					<input type="email" onChange={handleChangeEmail} id="email" />
-					<label htmlFor="name">Nume</label>
-					<input type="text" id="name" />
-					<label htmlFor="firstName">Prenume</label>
-					<input type="text" id="firstName" />
+					<label htmlFor="name">Nume și Prenume</label>
+					<input type="text" id="name" onChange={handleChangeName} />
 					<label htmlFor="password">Parolă</label>
 					<input type="password" onChange={handleChangePassword} id="password" />
 					<button onClick={createAccount}>Creare Cont</button>

@@ -6,7 +6,7 @@ const PollCreator = () => {
 	return (
 		<>
 			<article>
-				<h1>CREATOR POLL</h1>
+				<h1>CREATOR POLL pentru {user.displayName}</h1>
 				<p>Text Problemă în Discuție</p>
 				<textarea rows="14" cols="60" maxLength={800}></textarea>
 				<section>

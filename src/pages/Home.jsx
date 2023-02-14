@@ -6,7 +6,7 @@ const Home = () => {
 			<article>
 				<h1>ACASĂ</h1>
 				<section>
-					<Link to="login">*(work in progress) logare</Link>
+					<Link to="login">logare</Link>
 				</section>
 				<section>
 					<Link to="signup" disabled>

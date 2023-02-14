@@ -15,6 +15,7 @@ const Profile = () => {
 					<section>
 						<h1>Profilul Meu</h1>
 						<p>Email : {user.email}</p>
+						<p>Name: {user.displayName}</p>
 						<p>ID : {user.uid}</p>
 					</section>
 					<section style={{ display: "flex", flexDirection: "column" }}>
