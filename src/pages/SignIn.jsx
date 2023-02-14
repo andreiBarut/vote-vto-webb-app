@@ -1,5 +1,5 @@
 const SignIn = () => {
-	return <>SignIn</>;
+	return <>Logare</>;
 };
 
 export default SignIn;
