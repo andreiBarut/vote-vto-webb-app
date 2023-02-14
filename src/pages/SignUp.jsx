@@ -43,14 +43,14 @@ const SignUp = () => {
 			<article>
 				<h1>Crează-ți Propriul Cont</h1>
 				<form style={{ display: "flex", flexDirection: "column" }}>
-					<label>E-mail</label>
-					<input type="email" onChange={handleChangeEmail} />
-					<label>Nume</label>
-					<input type="text" />
-					<label>Prenume</label>
-					<input type="text" />
-					<label>Parolă</label>
-					<input type="password" onChange={handleChangePassword} />
+					<label htmlFor="email">E-mail</label>
+					<input type="email" onChange={handleChangeEmail} id="email" />
+					<label htmlFor="name">Nume</label>
+					<input type="text" id="name" />
+					<label htmlFor="firstName">Prenume</label>
+					<input type="text" id="firstName" />
+					<label htmlFor="password">Parolă</label>
+					<input type="password" onChange={handleChangePassword} id="password" />
 					<button onClick={createAccount}>Creare Cont</button>
 				</form>
 

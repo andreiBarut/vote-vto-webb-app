@@ -6,10 +6,12 @@ const Home = () => {
 			<article>
 				<h1>ACASĂ</h1>
 				<section>
-					<Link to="login">logare</Link>
+					<Link to="login">*(work in progress) logare</Link>
 				</section>
 				<section>
-					<Link to="signup">înregistrare</Link>
+					<Link to="signup" disabled>
+						înregistrare
+					</Link>
 				</section>
 				{/* <section>
 					<a href="#">urmărește tutorialul în limba română</a>
