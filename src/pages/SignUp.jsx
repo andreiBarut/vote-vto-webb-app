@@ -37,7 +37,8 @@ const SignUp = () => {
 				setTESTMessage("signed in as " + user.uid);
 				updateProfile(auth.currentUser, {
 					displayName: userName,
-				})
+				});
+				navigateTo("/profile")
 					.then(() => {
 						// Profile updated!
 						console.log("profile updated!");

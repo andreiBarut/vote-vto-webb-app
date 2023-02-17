@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
@@ -8,6 +8,7 @@ const SignIn = () => {
 	const [userPassword, setUserPassword] = useState(null);
 	const [TESTmessage, setTESTMessage] = useState(null);
 	const [userName, setUserName] = useState(null);
+
 	const navigateTo = useNavigate();
 
 	const handleChangeEmail = (e) => {
@@ -25,14 +26,19 @@ const SignIn = () => {
 		console.log(userName);
 	};
 
-	const createAccount = (e) => {
+	// useEffect(() => {
+	// 	window.localStorage.setItem("currentUser", JSON.stringify(currentUser));
+	// });
+
+	const loginAccount = (e) => {
 		e.preventDefault();
 		signInWithEmailAndPassword(auth, userEmail, userPassword)
 			.then((userCredential) => {
 				// Signed in
 				const user = userCredential.user;
 				setTESTMessage("signed in as " + user.uid);
-				navigateTo(`/profile/${user.uid}`);
+				// setCurrentUser(user);
+				navigateTo("/profile");
 			})
 			// ...
 
@@ -53,7 +59,7 @@ const SignIn = () => {
 					<input type="email" onChange={handleChangeEmail} id="email" />
 					<label htmlFor="password">Parolă</label>
 					<input type="password" onChange={handleChangePassword} id="password" />
-					<button onClick={createAccount}>Logare</button>
+					<button onClick={loginAccount}>Logare</button>
 				</form>
 
 				<p>{TESTmessage}</p>
