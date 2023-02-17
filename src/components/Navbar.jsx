@@ -14,7 +14,12 @@ const Navbar = () => {
 		}
 	});
 
-	return <>{userName}</>;
+	return (
+		<>
+			{userName && <>signed In as {userName}</>}
+			{!userName && <>signed out</>}
+		</>
+	);
 };
 
 export default Navbar;
