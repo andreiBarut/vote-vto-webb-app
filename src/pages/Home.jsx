@@ -3,14 +3,11 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
 	const [userName, setUserName] = useState(null);
 	const [userEmail, setUserEmail] = useState(null);
 	const [userId, setUserId] = useState(null);
-
-	const navigateTo = useNavigate();
 
 	const handleDisconnect = () => {
 		signOut(auth);
@@ -41,13 +38,13 @@ const Home = () => {
 								înregistrare
 							</Link>
 						</section>
+						<section>
+							<Link to="/profile">profilul meu</Link>
+						</section>
 						<section onClick={handleDisconnect}>
 							<Link to="/" disabled>
 								deconectare
 							</Link>
-						</section>
-						<section>
-							<Link to="/profile">profilul meu</Link>
 						</section>
 						{/* <section>
 					<a href="#">urmărește tutorialul în limba română</a>
@@ -64,6 +61,9 @@ const Home = () => {
 								înregistrare
 							</Link>
 						</section>
+						{/* <section>
+					<a href="#">urmărește tutorialul în limba română</a>
+				</section> */}
 					</>
 				)}
 			</article>

@@ -9,9 +9,9 @@ import Navbar from "./components/Navbar";
 
 function App() {
 	return (
-		<>
+		<div>
 			<BrowserRouter>
-				<Navbar />
+				<Navbar className="bg-slate-900" />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<SignIn />} />
@@ -20,7 +20,7 @@ function App() {
 					<Route path="/pollCreator" element={<PollCreator />} />
 				</Routes>
 			</BrowserRouter>
-		</>
+		</div>
 	);
 }
 
