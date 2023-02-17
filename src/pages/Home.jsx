@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
-
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 const Home = () => {
+	const handleDisconnect = () => {
+		signOut(auth);
+	};
+
 	return (
 		<>
 			<article>
@@ -11,6 +16,11 @@ const Home = () => {
 				<section>
 					<Link to="signup" disabled>
 						înregistrare
+					</Link>
+				</section>
+				<section onClick={handleDisconnect}>
+					<Link to="/" disabled>
+						deconectare
 					</Link>
 				</section>
 				{/* <section>

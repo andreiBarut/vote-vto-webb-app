@@ -1,13 +1,15 @@
 import { auth } from "../firebase";
 import { Link } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
 	const [userName, setUserName] = useState(null);
 	const [userEmail, setUserEmail] = useState(null);
 	const [userId, setUserId] = useState(null);
+
+	const navigateTo = useNavigate();
 
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
@@ -15,10 +17,10 @@ const Profile = () => {
 			setUserEmail(user.email);
 			setUserId(user.uid);
 		} else {
-			console.log("user is signed out");
+			//if there is no logged in user, redirect to home page
+			navigateTo("/");
 		}
 	});
-	// const user = auth.currentUser;
 
 	return (
 		<>

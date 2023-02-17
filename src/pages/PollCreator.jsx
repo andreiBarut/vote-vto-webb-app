@@ -1,6 +1,7 @@
 import { auth } from "../firebase";
 import { useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const PollCreator = () => {
 	const [userName, setUserName] = useState(null);
@@ -9,12 +10,15 @@ const PollCreator = () => {
 	const [nrOptions, setNrOptions] = useState(null);
 	const [optionsArr, setOptionsArr] = useState([]);
 
+	const navigateTo = useNavigate();
+
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
 			setUserName(user.displayName);
 			setUserId(user.uid);
 		} else {
-			console.log("user is signed out");
+			//if there is no logged in user, redirect to home page
+			navigateTo("/");
 		}
 	});
 
@@ -27,8 +31,6 @@ const PollCreator = () => {
 		setOptionsArr(pollOptions);
 		console.log(optionsArr);
 	};
-
-	// console.log(optionsTextArr);
 
 	return (
 		<>
