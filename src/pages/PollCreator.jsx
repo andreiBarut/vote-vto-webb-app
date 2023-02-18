@@ -2,6 +2,8 @@ import { auth } from "../firebase";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { db } from "../firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 const PollCreator = () => {
 	const [userName, setUserName] = useState(null);
@@ -16,7 +18,7 @@ const PollCreator = () => {
 		pollType: "",
 		voteType: "",
 	};
-
+	const navigateTo = useNavigate();
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
@@ -42,18 +44,29 @@ const PollCreator = () => {
 
 	const updateDb = (e) => {
 		e.preventDefault();
-		console.log(data);
+		async function addPollToDb(data) {
+			e.preventDefault();
+			try {
+				const docRef = await addDoc(collection(db, "polls"), {
+					data,
+				});
+
+				console.log("document written iwth ID: ", docRef.id);
+			} catch (e) {
+				console.log("Error adding document", e);
+			}
+		}
+		addPollToDb(data);
+		//TODO navigateTo("/vote");
 	};
 
 	return (
 		<>
 			<article>
-				<h1>Poll Creator : {userName}</h1>
-				<h5>Id User : {userId}</h5>
+				<h1>Creare Poll : {userName}</h1>
 				<fieldset>
 					<form>
 						<h2>Text problema in Discutie</h2>
-						<label htmlFor="textProblem">Textul Problemei</label>
 						<textarea
 							rows="14"
 							cols="60"
@@ -124,11 +137,6 @@ const PollCreator = () => {
 						<button onClick={updateDb}>Creaza Poll</button>
 					</form>
 				</fieldset>
-				<p>Vote Type {data.voteType}</p>
-				<p>Poll Type {data.pollType}</p>
-				<p>Option Nr {data.nrOptions}</p>
-				<p>Option text {data.optionsText}</p>
-				<p>Id {data.pollAuthorId}</p>
 			</article>
 		</>
 	);
