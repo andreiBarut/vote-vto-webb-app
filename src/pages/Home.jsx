@@ -31,14 +31,6 @@ const Home = () => {
 				{userName && (
 					<>
 						<section>
-							<Link to="login">logare</Link>
-						</section>
-						<section>
-							<Link to="signup" disabled>
-								înregistrare
-							</Link>
-						</section>
-						<section>
 							<Link to="/profile">profilul meu</Link>
 						</section>
 						<section onClick={handleDisconnect}>
