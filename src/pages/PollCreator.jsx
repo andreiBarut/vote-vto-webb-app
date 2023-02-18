@@ -1,5 +1,5 @@
 import { auth } from "../firebase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -7,103 +7,128 @@ const PollCreator = () => {
 	const [userName, setUserName] = useState(null);
 	const [userId, setUserId] = useState(null);
 
-	const [nrOptions, setNrOptions] = useState(null);
-	const [optionsArr, setOptionsArr] = useState([]);
+	const initialValues = {
+		pollAuthorId: "",
+		pollAuthorName: "",
+		textProblem: "",
+		nrOptions: "",
+		optionsText: "",
+		pollType: "",
+		voteType: "",
+	};
 
-	const navigateTo = useNavigate();
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUserName(user.displayName);
+				setUserId(user.uid);
+				setData({
+					...data,
+					pollAuthorId: user.uid,
+					pollAuthorName: user.displayName,
+				});
+			} else {
+				//if there is no logged in user, redirect to home page
+				navigateTo("/");
+			}
+		});
+	}, []);
 
-	onAuthStateChanged(auth, (user) => {
-		if (user) {
-			setUserName(user.displayName);
-			setUserId(user.uid);
-		} else {
-			//if there is no logged in user, redirect to home page
-			navigateTo("/");
-		}
-	});
+	const [data, setData] = useState(initialValues);
 
-	const handleRenderOptions = (e) => {
+	const handleChange = (e) => {
+		setData({ ...data, [e.target.name]: e.target.value });
+	};
+
+	const updateDb = (e) => {
 		e.preventDefault();
-		const pollOptions = [];
-		for (let i = 0; i < nrOptions; i++) {
-			pollOptions.push(i);
-		}
-		setOptionsArr(pollOptions);
-		console.log(optionsArr);
+		console.log(data);
 	};
 
 	return (
 		<>
 			<article>
-				<h1>CREATOR POLL pentru {userName}</h1>
-				<form>
-					<p>Text Problemă în Discuție</p>
-					<textarea rows="14" cols="60" maxLength={800}></textarea>
-					<section>
-						<p>Tip Poll</p>
-						<label htmlFor="multiple">Alegere Multiplă</label>
+				<h1>Poll Creator : {userName}</h1>
+				<h5>Id User : {userId}</h5>
+				<fieldset>
+					<form>
+						<h2>Text problema in Discutie</h2>
+						<label htmlFor="textProblem">Textul Problemei</label>
+						<textarea
+							rows="14"
+							cols="60"
+							maxLength={800}
+							value={data.textProblem}
+							name="textProblem"
+							id="problemText"
+							onChange={handleChange}
+							required={true}
+						></textarea>
+						<h2>Tip Poll</h2>
+						<label htmlFor="pollTypeMultiple">Alegere Multipla</label>
 						<input
 							type="radio"
-							name="typePoll"
-							id="multiple"
-							value={"multiple"}
+							onChange={handleChange}
+							value="multiple"
+							name="pollType"
+							id="pollTypeMultiple"
 							required={true}
 						/>
-						<label htmlFor="single">O Singură Variantă</label>
+						<label htmlFor="votetTypePublic">O Singura Varianta de Raspuns</label>
 						<input
 							type="radio"
-							name="typePoll"
-							id="single"
-							value={"single"}
+							onChange={handleChange}
+							value="single"
+							name="pollType"
+							id="pollTypeSingle"
 							required={true}
 						/>
-					</section>
-					<section>
-						<p>Tip Vot</p>
-						<label htmlFor="private">Privat</label>
+						<h2>Tip Vot</h2>
+						<label htmlFor="votetTypePublic">Vot Public</label>
 						<input
 							type="radio"
-							name="typeVote"
-							id="private"
-							value={"private"}
+							onChange={handleChange}
+							value="public"
+							name="voteType"
+							id="voteTypePublic"
 							required={true}
 						/>
-						<label htmlFor="public">Public</label>
+						<label htmlFor="votetTypePrivate">Vot Privat</label>
 						<input
 							type="radio"
-							name="typeVote"
-							id="public"
-							value={"public"}
+							onChange={handleChange}
+							value="private"
+							name="voteType"
+							id="voteTypePrivate"
 							required={true}
 						/>
-					</section>
-					<section>
-						<p>Nr. Opțiuni</p>
+						<h2>Optiuni</h2>
+						<label htmlFor="nrOptions">Nr. Optiuni</label>
 						<input
-							id="optionsNr"
 							type="number"
-							onChange={(e) => setNrOptions(e.target.value)}
+							onChange={handleChange}
+							value={data.nrOptions}
+							name="nrOptions"
+							id="nrOptions"
+							required={true}
 						/>
-						<br />
-						<button onClick={handleRenderOptions}>Setează Numărul de Opțiuni</button>
-					</section>
-					<section>
-						{optionsArr.map((option) => (
-							<div>
-								<label htmlFor={"option" + 1}>Opțiunea {option + 1}</label>
-								<input
-									type="text"
-									key={option}
-									id={"option" + 1}
-									onChange={(e) => setOptionsText(e.target.value)}
-								/>
-								<button onClick={(e) => e.preventDefault()} key={"buttonOption" + 1}>
-									Aplica Opțiunea
-								</button>
-							</div>
-						))}
-					</section>
-				</form>
+						<label htmlFor="optionsText">Text Optiuni</label>
+						<input
+							type="text"
+							onChange={handleChange}
+							value={data.optionsText}
+							name="optionsText"
+							id="optionsText"
+							required={true}
+						/>
+						<button onClick={updateDb}>Creaza Poll</button>
+					</form>
+				</fieldset>
+				<p>Vote Type {data.voteType}</p>
+				<p>Poll Type {data.pollType}</p>
+				<p>Option Nr {data.nrOptions}</p>
+				<p>Option text {data.optionsText}</p>
+				<p>Id {data.pollAuthorId}</p>
 			</article>
 		</>
 	);
