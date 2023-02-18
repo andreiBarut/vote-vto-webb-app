@@ -97,6 +97,8 @@ const PollCreator = () => {
 							id="pollTypeSingle"
 							required={true}
 						/>
+						{/* //! SCRIERE LIBERA*/}
+
 						<h2>Tip Vot</h2>
 						<label htmlFor="votetTypePublic">Vot Public</label>
 						<input
