@@ -38,7 +38,8 @@ const Profile = () => {
 						<button>crează poll</button>
 					</Link>
 					<button disabled>pollurile mele</button>
-					<button disabled>schimbă parola/</button>
+					<button disabled>schimbă parola</button>
+					<button disabled>sterge contul</button>
 				</section>
 			</article>
 		</>

@@ -3,7 +3,6 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
-import "./Home.css";
 
 const Home = () => {
 	const [userName, setUserName] = useState(null);
@@ -27,7 +26,7 @@ const Home = () => {
 
 	return (
 		<>
-			<article className="home-container">
+			<article>
 				<h1>ACASĂ</h1>
 				{userName && (
 					<>

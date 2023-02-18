@@ -1,7 +1,0 @@
-article {
-	display: flex;
-
-	justify-content: center;
-	width: 50vw;
-	flex-direction: column;
-}
