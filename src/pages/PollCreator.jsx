@@ -8,7 +8,7 @@ import { addDoc, collection } from "firebase/firestore";
 const PollCreator = () => {
 	const [userName, setUserName] = useState(null);
 	const [userId, setUserId] = useState(null);
-
+	const [docRefId, setDocRefId] = useState(null);
 	const initialValues = {
 		pollAuthorId: "",
 		pollAuthorName: "",
@@ -50,14 +50,15 @@ const PollCreator = () => {
 				const docRef = await addDoc(collection(db, "polls"), {
 					data,
 				});
-
+				setDocRefId(docRef.id);
+				console.log(docRef.id);
 				console.log("document written iwth ID: ", docRef.id);
+				navigateTo(`vote/${docRef.id}`);
 			} catch (e) {
 				console.log("Error adding document", e);
 			}
 		}
 		addPollToDb(data);
-		//TODO navigateTo("/vote");
 	};
 
 	return (

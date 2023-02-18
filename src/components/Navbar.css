@@ -1,0 +1,25 @@
+nav {
+	/* position: absolute; */
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto;
+	border: 2px solid red;
+	width: 100vw;
+	justify-content: center;
+	align-items: center;
+}
+
+nav ul {
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border: 2px solid blue;
+	margin: 0;
+	width: 100%;
+}
+
+nav ul li {
+	margin: 0;
+	left: 0;
+}

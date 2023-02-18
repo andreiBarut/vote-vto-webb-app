@@ -6,18 +6,20 @@ import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import PollCreator from "./pages/PollCreator";
 import Navbar from "./components/Navbar";
+import Vote from "./pages/Vote";
 
 function App() {
 	return (
-		<div>
+		<div className="app">
 			<BrowserRouter>
-				<Navbar className="bg-slate-900" />
+				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<SignIn />} />
 					<Route path="/signup" element={<SignUp />} />
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/pollCreator" element={<PollCreator />} />
+					<Route path="pollCreator/vote/:pollId" element={<Vote />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

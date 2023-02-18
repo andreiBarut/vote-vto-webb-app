@@ -3,11 +3,12 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
+import "./Home.css";
 
 const Home = () => {
 	const [userName, setUserName] = useState(null);
-	const [userEmail, setUserEmail] = useState(null);
-	const [userId, setUserId] = useState(null);
+	// const [userEmail, setUserEmail] = useState(null);
+	// const [userId, setUserId] = useState(null);
 
 	const handleDisconnect = () => {
 		signOut(auth);
@@ -26,7 +27,7 @@ const Home = () => {
 
 	return (
 		<>
-			<article>
+			<article className="home-container">
 				<h1>ACASĂ</h1>
 				{userName && (
 					<>
