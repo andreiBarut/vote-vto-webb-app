@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { addDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useState } from "react";
 
@@ -9,6 +9,14 @@ const Vote = () => {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [formData, setFormData] = useState("Jackson");
 	const [options, setOptions] = useState(null);
+
+	const initialValues = {};
+	const [resultData, setResultData] = useState(initialValues);
+
+	const handleChange = (e) => {
+		setResultData({ ...resultData, [e.target.name]: e.target.value });
+	};
+
 	console.log(pollId.pollId);
 
 	useEffect(() => {
@@ -30,7 +38,20 @@ const Vote = () => {
 
 	const collectVote = (e) => {
 		//for sending the data, will update the current poll, adding new fields which will have the results. The field will be called "results".
+
 		e.preventDefault();
+		async function addPollResultsToDb(data) {
+			try {
+				const docRef = await addDoc(collection(db, "polls", pollId.pollId), {
+					data,
+				});
+				console.log("document updated with ID: ", docRef.id);
+			} catch (e) {
+				//maybe use error instead of e as a parameter for the catch
+				console.log("error adding document", e);
+			}
+		}
+
 		if (formData.data.voteType === "private") {
 			console.log("not sending name alongside with answers");
 			//here we will have an array of as many maps as the options are
@@ -76,6 +97,7 @@ const Vote = () => {
 										id={`element ${element}`}
 										value={element}
 										key={`checkbox ${element}`}
+										onChange={handleChange}
 									/>
 								</div>
 							))}
@@ -96,6 +118,7 @@ const Vote = () => {
 										id={`element ${element}`}
 										value={element}
 										key={`radio ${element}`}
+										onChange={handleChange}
 									/>
 								</div>
 							))}
