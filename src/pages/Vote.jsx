@@ -1,21 +1,71 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { addDoc, doc, getDoc, collection, updateDoc } from "firebase/firestore";
+import {
+	addDoc,
+	doc,
+	getDoc,
+	collection,
+	updateDoc,
+	FieldValue,
+	increment,
+	arrayUnion,
+} from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
 import { db } from "../firebase";
 import { useState } from "react";
 
 const Vote = () => {
+	const [userName, setUserName] = useState(null);
+	const [userId, setUserId] = useState(null);
+	const [data, setData] = useState(null);
 	const pollId = useParams();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [formData, setFormData] = useState("Jackson");
 	const [currentDocId, setCurrentDocId] = useState(null);
+	const [currOption, setCurrOption] = useState(null);
+	const initialValues = new Map();
 
-	const initialValues = {};
 	const [resultData, setResultData] = useState(initialValues);
 
 	const handleChange = (e) => {
-		setResultData({ ...resultData, [e.target.name]: e.target.value });
+		if (e.target.type === "checkbox") {
+			if (e.target.checked && resultData.get(e.target.value) === 0) {
+				console.log(e.target.value);
+				setResultData(
+					resultData.set(e.target.value, resultData.get(e.target.value) + 1 || 1)
+				);
+
+				console.log(resultData);
+			} else if (!e.target.checked) {
+				console.log("unchecked");
+				setResultData(resultData.set(e.target.value, 0));
+				console.log(resultData);
+			}
+		} else if (e.target.type === "radio") {
+			console.log("hello there");
+			setResultData({ [e.target.value]: 1 });
+			console.log(resultData);
+		}
+		setCurrOption(`results.${e.target.value}`);
 	};
+
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUserName(user.displayName);
+				setUserId(user.uid);
+				setData({
+					...data,
+					pollAuthorId: user.uid,
+					pollAuthorName: user.displayName,
+				});
+			} else {
+				//if there is no logged in user, redirect to home page
+				navigateTo("/");
+			}
+		});
+	}, []);
 
 	console.log(pollId.pollId);
 
@@ -39,11 +89,14 @@ const Vote = () => {
 
 	const collectVote = (e) => {
 		//for sending the data, will update the current poll, adding new fields which will have the results. The field will be called "results".
-
+		// e.target.disabled = true;
 		e.preventDefault();
 		async function addPollResultsToDb(resData) {
 			const docRefRes = doc(db, "polls", currentDocId);
-			await updateDoc(docRefRes, { results: resData });
+			await updateDoc(docRefRes, {
+				[currOption]: increment(1),
+				voters: arrayUnion(userId),
+			});
 			console.log("document updated with ID: ", "/polls/", currentDocId);
 		}
 
