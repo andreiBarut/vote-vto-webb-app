@@ -9,7 +9,6 @@ const Vote = () => {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [formData, setFormData] = useState("Jackson");
 	const [currentDocId, setCurrentDocId] = useState(null);
-	const [options, setOptions] = useState(null);
 
 	const initialValues = {};
 	const [resultData, setResultData] = useState(initialValues);
