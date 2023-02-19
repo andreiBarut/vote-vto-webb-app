@@ -6,8 +6,8 @@ import { useState } from "react";
 
 const Home = () => {
 	const [userName, setUserName] = useState(null);
-	// const [userEmail, setUserEmail] = useState(null);
-	// const [userId, setUserId] = useState(null);
+	const [userEmail, setUserEmail] = useState(null);
+	const [userId, setUserId] = useState(null);
 
 	const handleDisconnect = () => {
 		signOut(auth);
