@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { addDoc, doc, getDoc } from "firebase/firestore";
+import { addDoc, doc, getDoc, collection, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useState } from "react";
 
@@ -8,6 +8,7 @@ const Vote = () => {
 	const pollId = useParams();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [formData, setFormData] = useState("Jackson");
+	const [currentDocId, setCurrentDocId] = useState(null);
 	const [options, setOptions] = useState(null);
 
 	const initialValues = {};
@@ -23,7 +24,8 @@ const Vote = () => {
 		const getDocument = async () => {
 			const docRef = doc(db, "polls", pollId.pollId);
 			const docSnap = await getDoc(docRef);
-
+			setCurrentDocId(docSnap.id);
+			console.log("current doc ref :", docSnap.id);
 			if (docSnap.exists()) {
 				console.log("Document data:", docSnap.data());
 				setFormData(docSnap.data());
@@ -40,16 +42,10 @@ const Vote = () => {
 		//for sending the data, will update the current poll, adding new fields which will have the results. The field will be called "results".
 
 		e.preventDefault();
-		async function addPollResultsToDb(data) {
-			try {
-				const docRef = await addDoc(collection(db, "polls", pollId.pollId), {
-					data,
-				});
-				console.log("document updated with ID: ", docRef.id);
-			} catch (e) {
-				//maybe use error instead of e as a parameter for the catch
-				console.log("error adding document", e);
-			}
+		async function addPollResultsToDb(resData) {
+			const docRefRes = doc(db, "polls", currentDocId);
+			await updateDoc(docRefRes, { results: resData });
+			console.log("document updated with ID: ", "/polls/", currentDocId);
 		}
 
 		if (formData.data.voteType === "private") {
@@ -64,6 +60,7 @@ const Vote = () => {
 		//after we update the doc, we will navigate to a new page called pollResults, which will show the results.
 		//on the results page, if the user is the creator of that specific poll, we verify using pollId, then we show a button which says stop vote. This will update a field (which does not exist yet) "open" = false
 		//when open is false then Vote page will not shot options to vote, instead it will show the text problem, and a button which when clicked will take the user to the Results page.
+		addPollResultsToDb(resultData);
 	};
 
 	return (
@@ -101,7 +98,7 @@ const Vote = () => {
 									/>
 								</div>
 							))}
-							<button onClick={(e) => e.preventDefault()}>Voteaza</button>
+							<button onClick={collectVote}>Voteaza</button>
 						</form>
 					)}
 					{formData.data.pollType === "single" && (
@@ -122,7 +119,7 @@ const Vote = () => {
 									/>
 								</div>
 							))}
-							<button onClick={(e) => e.preventDefault()}>Voteaza</button>
+							<button onClick={collectVote}>Voteaza</button>
 						</form>
 					)}
 				</>
