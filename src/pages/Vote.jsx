@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
 	addDoc,
 	doc,
@@ -26,6 +26,8 @@ const Vote = () => {
 	const [currentDocId, setCurrentDocId] = useState(null);
 	const [currOption, setCurrOption] = useState(null);
 	const initialValues = new Map();
+
+	const navigateTo = useNavigate();
 
 	const [resultData, setResultData] = useState(initialValues);
 
@@ -92,6 +94,11 @@ const Vote = () => {
 		console.log("this is how the path to the doc looks", currOption);
 	};
 
+	const handleClick = (e) => {
+		e.preventDefault();
+		navigateTo(`/results/${pollId.pollId}`);
+	};
+
 	console.log(pollId.pollId);
 
 	const collectVote = (e) => {
@@ -121,6 +128,7 @@ const Vote = () => {
 		//on the results page, if the user is the creator of that specific poll, we verify using pollId, then we show a button which says stop vote. This will update a field (which does not exist yet) "open" = false
 		//when open is false then Vote page will not shot options to vote, instead it will show the text problem, and a button which when clicked will take the user to the Results page.
 		addPollResultsToDb(resultData);
+		navigateTo(`/results/${pollId}`);
 	};
 
 	return (
@@ -182,9 +190,9 @@ const Vote = () => {
 							{!formData.voters.includes(userId) && (
 								<button onClick={collectVote}>Voteaza</button>
 							)}
-							{/* {formData.voters.includes(userId) && (
-								<p>Deja ti-ai exprimat votul pentru acest poll</p>
-							)} */}
+							{formData.voters.includes(userId) && (
+								<button onClick={handleClick}>Vezi Rezultatele</button>
+							)}
 						</form>
 					)}
 				</>
