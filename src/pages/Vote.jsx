@@ -19,6 +19,7 @@ const Vote = () => {
 	const [userName, setUserName] = useState(null);
 	const [userId, setUserId] = useState(null);
 	const [data, setData] = useState(null);
+	const [didUserVote, setDidUserVote] = useState(null);
 	const pollId = useParams();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [formData, setFormData] = useState("Jackson");
@@ -28,28 +29,7 @@ const Vote = () => {
 
 	const [resultData, setResultData] = useState(initialValues);
 
-	const handleChange = (e) => {
-		if (e.target.type === "checkbox") {
-			if (e.target.checked && resultData.get(e.target.value) === 0) {
-				console.log(e.target.value);
-				setResultData(
-					resultData.set(e.target.value, resultData.get(e.target.value) + 1 || 1)
-				);
-
-				console.log(resultData);
-			} else if (!e.target.checked) {
-				console.log("unchecked");
-				setResultData(resultData.set(e.target.value, 0));
-				console.log(resultData);
-			}
-		} else if (e.target.type === "radio") {
-			console.log("hello there");
-			setResultData({ [e.target.value]: 1 });
-			console.log(resultData);
-		}
-		setCurrOption(`results.${e.target.value}`);
-	};
-
+	//^GETTING CURRENT USER AND USER ID
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
@@ -67,8 +47,7 @@ const Vote = () => {
 		});
 	}, []);
 
-	console.log(pollId.pollId);
-
+	//^GETTING FIRESTORE POLL BASED ON USE PARAMS()S
 	useEffect(() => {
 		const getDocument = async () => {
 			const docRef = doc(db, "polls", pollId.pollId);
@@ -87,10 +66,39 @@ const Vote = () => {
 		getDocument();
 	}, []);
 
+	//^UPDATING CURR OPTION STATE
+	const handleChange = (e) => {
+		if (e.target.type === "checkbox") {
+			if (e.target.checked && resultData.get(e.target.value) === 0) {
+				console.log(e.target.value);
+				setResultData(
+					resultData.set(e.target.value, resultData.get(e.target.value) + 1 || 1)
+				);
+
+				console.log(resultData);
+			} else if (!e.target.checked) {
+				console.log("unchecked");
+				setResultData(resultData.set(e.target.value, 0));
+				console.log(resultData);
+			}
+			setCurrOption(`results.${resultData}`);
+		} else if (e.target.type === "radio") {
+			console.log("hello there");
+			setResultData({ [e.target.value]: 1 });
+			console.log(resultData);
+			//*solution for fields nested in another object
+			setCurrOption(`results.${e.target.value}`);
+		}
+		console.log("this is how the path to the doc looks", currOption);
+	};
+
+	console.log(pollId.pollId);
+
 	const collectVote = (e) => {
 		//for sending the data, will update the current poll, adding new fields which will have the results. The field will be called "results".
 		// e.target.disabled = true;
 		e.preventDefault();
+		e.target.disabled = true;
 		async function addPollResultsToDb(resData) {
 			const docRefRes = doc(db, "polls", currentDocId);
 			await updateDoc(docRefRes, {
@@ -171,7 +179,12 @@ const Vote = () => {
 									/>
 								</div>
 							))}
-							<button onClick={collectVote}>Voteaza</button>
+							{!formData.voters.includes(userId) && (
+								<button onClick={collectVote}>Voteaza</button>
+							)}
+							{formData.voters.includes(userId) && (
+								<p>Deja ti-ai exprimat votul pentru acest poll</p>
+							)}
 						</form>
 					)}
 				</>
