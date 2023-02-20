@@ -17,6 +17,7 @@ const PollCreator = () => {
 		optionsText: "",
 		pollType: "",
 		voteType: "",
+		voters: "",
 	};
 	const navigateTo = useNavigate();
 	useEffect(() => {
@@ -49,6 +50,7 @@ const PollCreator = () => {
 			try {
 				const docRef = await addDoc(collection(db, "polls"), {
 					data,
+					voters: "",
 				});
 				setDocRefId(docRef.id);
 				console.log(docRef.id);
@@ -79,7 +81,7 @@ const PollCreator = () => {
 							required={true}
 						></textarea>
 						<h2>Tip Poll</h2>
-						<label htmlFor="pollTypeMultiple">Alegere Multipla</label>
+						{/* <label htmlFor="pollTypeMultiple">Alegere Multipla</label>
 						<input
 							type="radio"
 							onChange={handleChange}
@@ -87,7 +89,7 @@ const PollCreator = () => {
 							name="pollType"
 							id="pollTypeMultiple"
 							required={true}
-						/>
+						/> */}
 						<label htmlFor="votetTypePublic">O Singura Varianta de Raspuns</label>
 						<input
 							type="radio"
@@ -118,7 +120,7 @@ const PollCreator = () => {
 							id="voteTypePrivate"
 							required={true}
 						/>
-						<h2>Optiuni</h2>
+						{/* <h2>Optiuni</h2>
 						<label htmlFor="nrOptions">Nr. Optiuni</label>
 						<input
 							type="number"
@@ -127,8 +129,15 @@ const PollCreator = () => {
 							name="nrOptions"
 							id="nrOptions"
 							required={true}
-						/>
-						<label htmlFor="optionsText">Text Optiuni</label>
+						/> */}
+						<br />
+						<h2>Text Optiuni</h2>
+						<label htmlFor="optionsText">
+							Scrie-ti optiunile si separati-le prin virgula astfel: pentru, impotriva,
+							ma abtin (sau orice alta combinatie, atata timp cat sunt separate prin
+							virgula){" "}
+						</label>
+						<br />
 						<input
 							type="text"
 							onChange={handleChange}
