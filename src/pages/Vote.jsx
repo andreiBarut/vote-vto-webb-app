@@ -109,7 +109,7 @@ const Vote = () => {
 		async function addPollResultsToDb(resData) {
 			const docRefRes = doc(db, "polls", currentDocId);
 			await updateDoc(docRefRes, {
-				[currOption]: increment(1),
+				[currOption]: arrayUnion(userName),
 				voters: arrayUnion(userId),
 			});
 			console.log("document updated with ID: ", "/polls/", currentDocId);

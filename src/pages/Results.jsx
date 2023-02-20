@@ -8,6 +8,7 @@ const Results = () => {
 	const [resultsData, setResultsData] = useState(null);
 	const [currentDocId, setCurrentDocId] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
+
 	//^GETTING FIRESTORE POLL BASED ON USE PARAMS()S
 	useEffect(() => {
 		const getDocument = async () => {

@@ -30,8 +30,7 @@ const Profile = () => {
 					<h1>Profilul Meu</h1>
 					{console.log("below profile", userEmail)}
 					<p>Email : {userEmail}</p>
-					<p>Name: {userName}</p>
-					<p>ID : {userId}</p>
+					<p>Nume Utilizator: {userName}</p>
 				</section>
 				<section style={{ display: "flex", flexDirection: "column" }}>
 					<Link to={`/pollCreator`}>
@@ -40,7 +39,7 @@ const Profile = () => {
 					<Link to={`/myPolls`}>
 						<button>poll-urile mele</button>
 					</Link>
-					<button disabled>pollurile mele</button>
+
 					<button disabled>schimbă parola</button>
 					<button disabled>sterge contul</button>
 				</section>
