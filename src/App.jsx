@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import PollCreator from "./pages/PollCreator";
 import Navbar from "./components/Navbar";
 import Vote from "./pages/Vote";
+import MyPolls from "./pages/MyPolls";
 
 function App() {
 	return (
@@ -19,7 +20,8 @@ function App() {
 					<Route path="/signup" element={<SignUp />} />
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/pollCreator" element={<PollCreator />} />
-					<Route path="pollCreator/vote/:pollId" element={<Vote />} />
+					<Route path="/pollCreator/vote/:pollId" element={<Vote />} />
+					<Route path="/myPolls" element={<MyPolls />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

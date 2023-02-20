@@ -37,6 +37,9 @@ const Profile = () => {
 					<Link to={`/pollCreator`}>
 						<button>crează poll</button>
 					</Link>
+					<Link to={`/myPolls`}>
+						<button>poll-urile mele</button>
+					</Link>
 					<button disabled>pollurile mele</button>
 					<button disabled>schimbă parola</button>
 					<button disabled>sterge contul</button>

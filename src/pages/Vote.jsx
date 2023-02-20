@@ -179,12 +179,12 @@ const Vote = () => {
 									/>
 								</div>
 							))}
-							{!formData.voters.includes(userId) && (
+							{/* {!formData.voters.includes(userId) && (
 								<button onClick={collectVote}>Voteaza</button>
 							)}
 							{formData.voters.includes(userId) && (
 								<p>Deja ti-ai exprimat votul pentru acest poll</p>
-							)}
+							)} */}
 						</form>
 					)}
 				</>
