@@ -1,6 +1,7 @@
 import { auth } from "../firebase";
 import { useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import "./Navbar.css";
 
 const Navbar = () => {
 	const [userName, setUserName] = useState(null);
@@ -19,14 +20,14 @@ const Navbar = () => {
 		<nav>
 			{userName && (
 				<ul
-					style={{
-						listStyle: "none",
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "space-between",
-						border: "2px solid blue",
-						width: "60vw",
-					}}
+				// style={{
+				// 	listStyle: "none",
+				// 	display: "flex",
+				// 	flexDirection: "row",
+				// 	justifyContent: "space-between",
+				// 	border: "2px solid blue",
+				// 	width: "60vw",
+				// }}
 				>
 					<li>logo</li>
 					<li>status: logat ca {userName}</li>

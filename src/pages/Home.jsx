@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
+import "./Pages.css";
 
 const Home = () => {
 	const [userName, setUserName] = useState(null);

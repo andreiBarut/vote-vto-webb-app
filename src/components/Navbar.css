@@ -1,0 +1,22 @@
+nav {
+	background-color: #6f625c;
+	width: 100vw;
+}
+
+nav ul {
+	background-color: #6f625c;
+	list-style-type: none;
+	display: flex;
+	justify-content: space-around;
+	margin: 0 auto;
+	height: 12vh;
+	/* margin: 0; */
+	border: 2px solid;
+	align-items: center;
+	/* padding: 0; */
+}
+
+nav li {
+	margin: 0;
+	padding: 0;
+}
