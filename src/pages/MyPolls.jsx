@@ -23,17 +23,12 @@ const MyPolls = () => {
 		});
 	}, []);
 
-	const handleClick = (e) => {
-		console.log(data);
-	};
-
 	useEffect(() => {
 		const getDocuments = async () => {
 			const q = query(
 				collection(db, "polls"),
-				where("data.pollAuthorName", "==", "Hulk Hogan")
+				where("data.pollAuthorId", "==", `${userId}`)
 			);
-
 			const querySnapshot = await getDocs(q);
 			querySnapshot.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
@@ -41,21 +36,25 @@ const MyPolls = () => {
 				setData((oldArray) => [...oldArray, [doc.id, doc.data().data.textProblem]]);
 				console.log(data);
 			});
+			setIsLoaded(true);
 		};
 		getDocuments();
-		console.log(data);
-	}, []);
+	}, [userName]);
 
 	return (
 		<article>
-			<h2>My Polls</h2>
-			<h4>{userName}</h4>
-			{data.map((element) => (
-				<div>
-					<Link to={`/pollCreator/vote/${element[0]}`}>{element[1]}</Link>
-				</div>
-			))}
-			<button onClick={handleClick}>click</button>
+			<div>
+				<h2>My Polls</h2>
+				<h4>{userName}</h4>
+
+				{data.map((element) => (
+					<div key={`element ${element}`}>
+						<Link to={`/pollCreator/vote/${element[0]}`} key={element[0]}>
+							{element[1]}
+						</Link>
+					</div>
+				))}
+			</div>
 		</article>
 	);
 };
