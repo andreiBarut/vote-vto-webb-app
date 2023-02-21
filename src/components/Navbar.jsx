@@ -2,6 +2,7 @@ import { auth } from "../firebase";
 import { useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import "./Navbar.css";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
 	const [userName, setUserName] = useState(null);
@@ -29,23 +30,30 @@ const Navbar = () => {
 				// 	width: "60vw",
 				// }}
 				>
-					<li>logo</li>
-					<li>status: logat ca {userName}</li>
+					<li>
+						<div className="navbar-circle">
+							<p>V</p>
+							<p>T</p>
+						</div>
+					</li>
+					<li style={{ color: "rgb(147, 237, 147)" }}>
+						status: logat ca {userName}
+						<CgProfile style={{ fontSize: "2rem" }} />
+					</li>
 				</ul>
 			)}
 			{!userName && (
-				<ul
-					style={{
-						listStyle: "none",
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "space-between",
-						border: "2px solid red",
-						width: "60vw",
-					}}
-				>
-					<li>logo</li>
-					<li>status: delogat</li>
+				<ul>
+					<li>
+						<div className="navbar-circle">
+							<p>V</p>
+							<p>T</p>
+						</div>
+					</li>
+					<li style={{ color: "pink" }}>
+						status: delogat
+						<CgProfile style={{ fontSize: "2rem" }} />
+					</li>
 				</ul>
 			)}
 		</nav>

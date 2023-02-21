@@ -53,13 +53,13 @@ const SignIn = () => {
 	return (
 		<>
 			<article>
-				<h1>Loghează-te în Contul Tău</h1>
+				<h1>LOGHEAZĂ-TE ÎN CONTUL TĂU</h1>
 				<form style={{ display: "flex", flexDirection: "column" }}>
-					<label htmlFor="email">E-mail</label>
+					<label htmlFor="email">EMAIL</label>
 					<input type="email" onChange={handleChangeEmail} id="email" />
-					<label htmlFor="password">Parolă</label>
+					<label htmlFor="password">PAROLĂ</label>
 					<input type="password" onChange={handleChangePassword} id="password" />
-					<button onClick={loginAccount}>Logare</button>
+					<button onClick={loginAccount}>LOGARE</button>
 				</form>
 
 				<p>{TESTmessage}</p>

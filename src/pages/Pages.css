@@ -6,8 +6,77 @@ article {
 	/* height: 70vh; */
 	min-height: 70vh;
 	max-height: fit-content;
-	border: 2px solid red;
+	/* border: 2px solid red; */
 	margin: 5vh 5vw;
 	background-color: white;
 	color: #413733;
+	border-radius: 10px;
+	padding: 0.5rem;
+}
+
+.home-article-container {
+	gap: 10px;
+}
+
+article h1,
+h4 {
+	text-shadow: 0px 2px 2px #4137334c;
+}
+
+.home-article-container img {
+	height: 100px;
+}
+
+a {
+	color: #413733;
+	font-weight: 600;
+}
+
+a:hover {
+	color: #4137337e;
+	transition: 0.2s;
+}
+
+input {
+	padding: 0.5rem;
+	font-family: "Montserrat", sans-serif;
+	background-color: rgb(186, 186, 186);
+	border: 0;
+	border-radius: 5px;
+	color: #413733;
+	font-size: 1.2rem;
+}
+
+label {
+	font-weight: bold;
+}
+
+button {
+	padding: 0.5rem;
+	border-radius: 10px;
+
+	background-color: #413733;
+	color: #ffffff;
+	border: 0;
+	margin-top: 1rem;
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+button:hover {
+	background-color: rgb(186, 186, 186);
+	color: #413733;
+	transition: 0.2s;
+	cursor: pointer;
+}
+
+button:disabled {
+	background-color: #4137333b;
+	color: #ffffff;
+}
+
+button:disabled:hover {
+	background-color: #4137333b;
+	color: #ffffff;
+	cursor: default;
 }

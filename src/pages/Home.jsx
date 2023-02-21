@@ -4,6 +4,8 @@ import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import "./Pages.css";
+import logo from "../assets/images/amvvd_logo.png";
+import { CgProfile } from "react-icons/cg";
 
 const Home = () => {
 	const [userName, setUserName] = useState(null);
@@ -27,16 +29,37 @@ const Home = () => {
 
 	return (
 		<>
-			<article>
+			<article className="home-article-container">
 				<h1>ACASĂ</h1>
 				{userName && (
 					<>
 						<section>
-							<Link to="/profile">profilul meu</Link>
+							<h4>
+								ASOCIAȚIA MILITARILOR VETERANI ȘI VETERANILOR CU DIZABILITĂȚI, SUCURSALA
+								SĂLAJ, 2023
+							</h4>
+							<p>Creaza proprille polluri personalizate</p>
+							<ol>
+								<li>Creaza-ti un cont sau loghează-te în contul tău preexistent</li>
+								<li>Creaza-ti propriul poll folosind formularul</li>
+								<li>Distribuie linkul generat votantilor</li>
+								<li>
+									Apasa pe butonul ,,STOP VOT” pentru a opri voturile la pollul tau
+								</li>
+							</ol>
+						</section>
+						<section>
+							<img src={logo} alt="association logo" />
+						</section>
+						<CgProfile style={{ fontSize: "2rem" }} />
+						<section>
+							<Link to="/profile" className="link">
+								<button>PROFILUL MEU</button>
+							</Link>
 						</section>
 						<section onClick={handleDisconnect}>
-							<Link to="/" disabled>
-								deconectare
+							<Link to="/" className="link" disabled>
+								<button>DECONECTARE</button>
 							</Link>
 						</section>
 						{/* <section>
@@ -47,11 +70,30 @@ const Home = () => {
 				{!userName && (
 					<>
 						<section>
-							<Link to="login">logare</Link>
+							<h4>
+								ASOCIAȚIA MILITARILOR VETERANI DIN TEATRELE DE OPERAȚII, SUCURSALA
+								SĂLAJ, 2023
+							</h4>
+							<p>Creaza proprille polluri personalizate</p>
+							<ol>
+								<li>Creaza-ti un cont sau loghează-te în contul tău preexistent</li>
+								<li>Creaza-ti propriul poll folosind formularul</li>
+								<li>Distribuie linkul generat votantilor</li>
+								<li>
+									Apasa pe butonul ,,STOP VOT” pentru a opri voturile la pollul tau
+								</li>
+							</ol>
+						</section>
+						<section>
+							<img src={logo} alt="association logo" />
+						</section>
+						<CgProfile style={{ fontSize: "2rem" }} />
+						<section>
+							<Link to="login">&gt;logare</Link>
 						</section>
 						<section>
 							<Link to="signup" disabled>
-								înregistrare
+								&gt;înregistrare
 							</Link>
 						</section>
 						{/* <section>
