@@ -44,7 +44,7 @@ const MyPolls = () => {
 	return (
 		<article>
 			<div>
-				<h2>My Polls</h2>
+				<h2>POLL-URILE MELE</h2>
 				<hr></hr>
 				<h4>{userName}</h4>
 				<hr></hr>
