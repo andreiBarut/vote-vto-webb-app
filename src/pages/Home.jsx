@@ -41,7 +41,7 @@ const Home = () => {
 						<section>
 							<h4>
 								ASOCIAȚIA MILITARILOR VETERANI ȘI VETERANILOR CU DIZABILITĂȚI, SUCURSALA
-								SĂLAJ, 2023
+								SĂLAJ
 							</h4>
 							<section
 								style={{
@@ -84,8 +84,8 @@ const Home = () => {
 					<>
 						<section>
 							<h4>
-								ASOCIAȚIA MILITARILOR VETERANI DIN TEATRELE DE OPERAȚII, SUCURSALA
-								SĂLAJ, 2023
+								ASOCIAȚIA MILITARILOR VETERANI ȘI VETERANILOR CU DIZABILITĂȚI, SUCURSALA
+								SĂLAJ
 							</h4>
 							<section
 								style={{
