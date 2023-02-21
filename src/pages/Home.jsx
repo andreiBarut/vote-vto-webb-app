@@ -51,8 +51,10 @@ const Home = () => {
 							>
 								<img src={logo} alt="association logo" />
 							</section>
-							<p>Creaza proprille polluri personalizate</p>
 							<ol>
+								<p style={{ color: "green", fontWeight: "600" }}>
+									Creaza proprille polluri personalizate
+								</p>
 								<li>Creaza-ti un cont sau loghează-te în contul tău preexistent</li>
 								<li>Creaza-ti propriul poll folosind formularul</li>
 								<li>Distribuie linkul generat votantilor</li>
@@ -85,7 +87,6 @@ const Home = () => {
 								ASOCIAȚIA MILITARILOR VETERANI DIN TEATRELE DE OPERAȚII, SUCURSALA
 								SĂLAJ, 2023
 							</h4>
-							<p>Creaza proprille polluri personalizate</p>
 							<section
 								style={{
 									display: "flex",
@@ -95,6 +96,9 @@ const Home = () => {
 								<img src={logo} alt="association logo" />
 							</section>
 							<ol>
+								<p style={{ color: "green", fontWeight: "600" }}>
+									Creaza proprille polluri personalizate
+								</p>
 								<li>Creaza-ti un cont sau loghează-te în contul tău preexistent</li>
 								<li>Creaza-ti propriul poll folosind formularul</li>
 								<li>Distribuie linkul generat votantilor</li>

@@ -66,11 +66,16 @@ const PollCreator = () => {
 	return (
 		<>
 			<article className="pollCreator-article-container">
-				<h1>Creare Poll : {userName}</h1>
+				<h1>
+					CREARE POLL: utilizator curent{" "}
+					<span style={{ fontWeight: "bolder", textDecoration: "underline" }}>
+						{userName}
+					</span>{" "}
+				</h1>
 				{/* <fieldset> */}
 				<form>
 					<section>
-						<h2>Text problema in Discutie</h2>
+						<h2>TEXT PROBLEMĂ</h2>
 						<textarea
 							rows="14"
 							cols="60"
@@ -83,7 +88,7 @@ const PollCreator = () => {
 						></textarea>
 					</section>
 					<section>
-						<h2>Tip Poll</h2>
+						<h2>TIP POLL</h2>
 						{/* <label htmlFor="pollTypeMultiple">Alegere Multipla</label>
 						<input
 							type="radio"
@@ -105,7 +110,7 @@ const PollCreator = () => {
 					</section>
 					{/* //! SCRIERE LIBERA*/}
 					<section>
-						<h2>Tip Vot</h2>
+						<h2>TIP VOT</h2>
 						<label htmlFor="votetTypePublic">Vot Public</label>
 						<input
 							type="radio"
@@ -137,7 +142,7 @@ const PollCreator = () => {
 							required={true}
 						/> */}
 					<br />
-					<h2>Text Optiuni</h2>
+					<h2>TEXT OPȚIUNI</h2>
 					<label htmlFor="optionsText">
 						Scrie-ti optiunile si separati-le prin virgula astfel: pentru, impotriva,
 						ma abtin (sau orice alta combinatie, atata timp cat sunt separate prin
@@ -153,7 +158,7 @@ const PollCreator = () => {
 						required={true}
 					/>
 					<br />
-					<button onClick={updateDb}>Creaza Poll</button>
+					<button onClick={updateDb}>CREAZĂ POLL</button>
 				</form>
 				{/* </fieldset> */}
 			</article>
