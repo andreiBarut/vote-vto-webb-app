@@ -77,7 +77,7 @@ const SignUp = () => {
 				<form style={{ display: "flex", flexDirection: "column" }}>
 					<label htmlFor="email">EMAIL</label>
 					<input type="email" onChange={handleChangeEmail} id="email" />
-					<label htmlFor="name">NUME ȘI PRENUME(despărțite printr-un spațiu)</label>
+					<label htmlFor="name">NUME ȘI PRENUME</label>
 					<input type="text" id="name" onChange={handleChangeName} />
 					<label htmlFor="password">PAROLĂ</label>
 					<input type="password" onChange={handleChangePassword} id="password" />

@@ -32,13 +32,29 @@ const Results = () => {
 	}, []);
 
 	return (
-		<article>
+		<article className="results-article-container">
 			{isLoaded && (
 				<div>
-					<div>results for: {resultsData.data.textProblem}</div>
-					<p style={{ border: "2px solid red" }}>
-						{Object.entries(resultsData.results) + " "}
-					</p>
+					<h2>REZULTATE PENTRU</h2>
+					<h3>TEXT POLL : {resultsData.data.textProblem}</h3>
+					<div>
+						{Object.entries(resultsData.results).map((element) => (
+							<p className="results-result-p">
+								<span style={{ color: "green", fontWeight: "bold" }}>
+									{element[0] + " "}
+								</span>
+								=&gt;
+								<span style={{ fontWeight: "bold" }}>
+									&nbsp;&nbsp;{element[1] + " "} =&gt;
+								</span>
+								<span
+									style={{ fontWeight: "bolder", color: "blue", fontSize: "1.5rem" }}
+								>
+									&nbsp;&nbsp;{element[1].length}
+								</span>
+							</p>
+						))}
+					</div>
 				</div>
 			)}
 		</article>

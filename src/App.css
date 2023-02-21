@@ -6,3 +6,11 @@
 	box-sizing: border-box;
 	font-family: "Montserrat", sans-serif;
 }
+
+.app-content {
+	background-color: white;
+	min-height: 80vh;
+	max-height: auto;
+	width: 80vw;
+	margin: 0 auto;
+}

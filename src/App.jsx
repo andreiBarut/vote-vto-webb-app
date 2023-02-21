@@ -6,6 +6,7 @@ import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import PollCreator from "./pages/PollCreator";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Vote from "./pages/Vote";
 import MyPolls from "./pages/MyPolls";
 import Results from "./pages/Results";
@@ -15,16 +16,19 @@ function App() {
 		<div className="app">
 			<BrowserRouter>
 				<Navbar />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/login" element={<SignIn />} />
-					<Route path="/signup" element={<SignUp />} />
-					<Route path="/profile" element={<Profile />} />
-					<Route path="/pollCreator" element={<PollCreator />} />
-					<Route path="/pollCreator/vote/:pollId" element={<Vote />} />
-					<Route path="/myPolls" element={<MyPolls />} />
-					<Route path="/results/:pollId" element={<Results />} />
-				</Routes>
+				<div className="app-content">
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/login" element={<SignIn />} />
+						<Route path="/signup" element={<SignUp />} />
+						<Route path="/profile" element={<Profile />} />
+						<Route path="/pollCreator" element={<PollCreator />} />
+						<Route path="/pollCreator/vote/:pollId" element={<Vote />} />
+						<Route path="/myPolls" element={<MyPolls />} />
+						<Route path="/results/:pollId" element={<Results />} />
+					</Routes>
+				</div>
+				<Footer />
 			</BrowserRouter>
 		</div>
 	);

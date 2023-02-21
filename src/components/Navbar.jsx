@@ -48,10 +48,12 @@ const Navbar = () => {
 			{!userName && (
 				<ul>
 					<li>
-						<div className="navbar-circle">
-							<p>V</p>
-							<p>T</p>
-						</div>
+						<Link to="/">
+							<div className="navbar-circle">
+								<p>V</p>
+								<p>T</p>
+							</div>
+						</Link>
 					</li>
 					<li style={{ color: "pink" }}>
 						status: delogat
