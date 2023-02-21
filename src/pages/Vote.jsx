@@ -100,6 +100,34 @@ const Vote = () => {
 		navigateTo(`/results/${pollId.pollId}`);
 	};
 
+	const handleStopVote = (e) => {
+		e.preventDefault();
+		e.target.disabled = true;
+		async function updateStopVote() {
+			const docRefRes = doc(db, "polls", currentDocId);
+			await updateDoc(docRefRes, {
+				active: false,
+			});
+			console.log("document updated with ID: ", "/polls/", currentDocId);
+			// navigateTo(`/results/${pollId}`);
+			window.location.reload();
+		}
+
+		if (formData.data.voteType === "private") {
+			console.log("not sending name alongside with answers");
+			//here we will have an array of as many maps as the options are
+			//the maps will have the key (optionName) and the value as a number which is incremented as users vote.
+		} else {
+			console.log("sending reults alongside with name");
+			//here we will send an array which contains as many maps as the options are
+			//the maps will have the key (optionName), and the value as an array which is modified (usernames pushed in it) as users post (using updateDoc())
+		}
+		//after we update the doc, we will navigate to a new page called pollResults, which will show the results.
+		//on the results page, if the user is the creator of that specific poll, we verify using pollId, then we show a button which says stop vote. This will update a field (which does not exist yet) "open" = false
+		//when open is false then Vote page will not shot options to vote, instead it will show the text problem, and a button which when clicked will take the user to the Results page.
+		updateStopVote();
+	};
+
 	console.log(pollId.pollId);
 
 	const collectVote = (e) => {
@@ -114,6 +142,8 @@ const Vote = () => {
 				voters: arrayUnion(userId),
 			});
 			console.log("document updated with ID: ", "/polls/", currentDocId);
+			// navigateTo(`/results/${pollId}`);
+			window.location.reload();
 		}
 
 		if (formData.data.voteType === "private") {
@@ -130,7 +160,6 @@ const Vote = () => {
 		//when open is false then Vote page will not shot options to vote, instead it will show the text problem, and a button which when clicked will take the user to the Results page.
 		addPollResultsToDb(resultData);
 		// navigateTo(`/results/${pollId}`);
-		window.location.reload();
 	};
 
 	return (
@@ -148,7 +177,9 @@ const Vote = () => {
 						style={{ width: "50vw", display: "block", textAlign: "center" }}
 					/>
 					<h2>Textul Problemei</h2>
-					<p>{formData.data.textProblem}</p>
+					<p style={{ color: "orange", fontWeight: "bold", fontSize: "1.2rem" }}>
+						{formData.data.textProblem}
+					</p>
 					<></>
 					{formData.data.pollType === "multiple" && (
 						<form>
@@ -171,31 +202,46 @@ const Vote = () => {
 							<button onClick={collectVote}>Voteaza</button>
 						</form>
 					)}
-					{formData.data.pollType === "single" && (
-						<form>
-							<p>O singura varianta de votare</p>
-							{formData.data.optionsText.split(",").map((element) => (
-								<div key={`div ${element}`}>
-									<label htmlFor={`element ${element}`} key={`label ${element}`}>
-										{element}
-									</label>
-									<input
-										type="radio"
-										name={`radio`}
-										id={`element ${element}`}
-										value={element}
-										key={`radio ${element}`}
-										onChange={handleChange}
-									/>
-								</div>
-							))}
-							{!formData.voters.includes(userId) && (
-								<button onClick={collectVote}>Voteaza</button>
-							)}
-							{formData.voters.includes(userId) && (
-								<button onClick={handleClick}>Vezi Rezultatele</button>
-							)}
-						</form>
+					{formData.data.pollType === "single" &&
+						!formData.voters.includes(userId) && (
+							<form>
+								<p>O singura varianta de votare</p>
+								{formData.data.optionsText.split(",").map((element) => (
+									<div key={`div ${element}`}>
+										<label htmlFor={`element ${element}`} key={`label ${element}`}>
+											{element}
+										</label>
+										<input
+											type="radio"
+											name={`radio`}
+											id={`element ${element}`}
+											value={element}
+											key={`radio ${element}`}
+											onChange={handleChange}
+										/>
+									</div>
+								))}
+								{!formData.voters.includes(userId) && (
+									<button onClick={collectVote}>Voteaza</button>
+								)}
+							</form>
+						)}
+
+					{formData.voters.includes(userId) && (
+						<div
+							style={{
+								margin: "0 auto",
+								display: "flex",
+								flexDirection: "column",
+								alignItems: "center",
+							}}
+						>
+							<p style={{ color: "green", fontWeight: "bold" }}>
+								Deja ti-ai exprimat votul pentru acest poll.
+							</p>
+							<button onClick={handleClick}>VEZI REZULTATELE</button>
+							{/* <button onClick={handleStopVote}>STOP VOT</button> */}
+						</div>
 					)}
 				</>
 			)}
