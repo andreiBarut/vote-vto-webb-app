@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiUserPin } from "react-icons/bi";
-
+import logo from "../assets/images/amvvd_logo.png";
 const Profile = () => {
 	const [userName, setUserName] = useState(null);
 	const [userEmail, setUserEmail] = useState(null);
@@ -29,7 +29,8 @@ const Profile = () => {
 				{console.log("inside return")}
 				<section style={{ textAlign: "center" }}>
 					<h1>PROFILUL MEU</h1>
-					<BiUserPin style={{ fontSize: "5rem" }} />
+					<img style={{ height: "100px" }} src={logo} alt="association logo" />
+					{/* <BiUserPin style={{ fontSize: "5rem" }} /> */}
 					{console.log("below profile", userEmail)}
 					<section className="profile-article-credentials-container">
 						<p>EMAIL: {userEmail}</p>

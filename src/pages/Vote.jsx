@@ -96,6 +96,7 @@ const Vote = () => {
 
 	const handleClick = (e) => {
 		e.preventDefault();
+		// window.location.reload();
 		navigateTo(`/results/${pollId.pollId}`);
 	};
 
@@ -128,7 +129,8 @@ const Vote = () => {
 		//on the results page, if the user is the creator of that specific poll, we verify using pollId, then we show a button which says stop vote. This will update a field (which does not exist yet) "open" = false
 		//when open is false then Vote page will not shot options to vote, instead it will show the text problem, and a button which when clicked will take the user to the Results page.
 		addPollResultsToDb(resultData);
-		navigateTo(`/results/${pollId}`);
+		// navigateTo(`/results/${pollId}`);
+		window.location.reload();
 	};
 
 	return (
