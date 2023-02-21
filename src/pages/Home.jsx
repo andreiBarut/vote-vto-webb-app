@@ -5,7 +5,12 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import "./Pages.css";
 import logo from "../assets/images/amvvd_logo.png";
-import { CgProfile } from "react-icons/cg";
+import {
+	AiOutlineUserAdd,
+	AiOutlineLogin,
+	AiOutlineUser,
+	AiOutlineLogout,
+} from "react-icons/ai";
 
 const Home = () => {
 	const [userName, setUserName] = useState(null);
@@ -38,6 +43,14 @@ const Home = () => {
 								ASOCIAȚIA MILITARILOR VETERANI ȘI VETERANILOR CU DIZABILITĂȚI, SUCURSALA
 								SĂLAJ, 2023
 							</h4>
+							<section
+								style={{
+									display: "flex",
+									justifyContent: "center",
+								}}
+							>
+								<img src={logo} alt="association logo" />
+							</section>
 							<p>Creaza proprille polluri personalizate</p>
 							<ol>
 								<li>Creaza-ti un cont sau loghează-te în contul tău preexistent</li>
@@ -49,17 +62,15 @@ const Home = () => {
 							</ol>
 						</section>
 						<section>
-							<img src={logo} alt="association logo" />
-						</section>
-						<CgProfile style={{ fontSize: "2rem" }} />
-						<section>
 							<Link to="/profile" className="link">
 								<button>PROFILUL MEU</button>
+								<AiOutlineUser style={{ color: "#413733", fontSize: "2rem" }} />
 							</Link>
 						</section>
 						<section onClick={handleDisconnect}>
 							<Link to="/" className="link" disabled>
 								<button>DECONECTARE</button>
+								<AiOutlineLogout style={{ color: "#413733", fontSize: "2rem" }} />
 							</Link>
 						</section>
 						{/* <section>
@@ -75,6 +86,14 @@ const Home = () => {
 								SĂLAJ, 2023
 							</h4>
 							<p>Creaza proprille polluri personalizate</p>
+							<section
+								style={{
+									display: "flex",
+									justifyContent: "center",
+								}}
+							>
+								<img src={logo} alt="association logo" />
+							</section>
 							<ol>
 								<li>Creaza-ti un cont sau loghează-te în contul tău preexistent</li>
 								<li>Creaza-ti propriul poll folosind formularul</li>
@@ -84,16 +103,17 @@ const Home = () => {
 								</li>
 							</ol>
 						</section>
+
 						<section>
-							<img src={logo} alt="association logo" />
-						</section>
-						<CgProfile style={{ fontSize: "2rem" }} />
-						<section>
-							<Link to="login">&gt;logare</Link>
+							<Link to="login">
+								<button>LOGARE</button>
+								<AiOutlineLogin style={{ color: "#413733", fontSize: "2rem" }} />
+							</Link>
 						</section>
 						<section>
 							<Link to="signup" disabled>
-								&gt;înregistrare
+								<button>ÎNREGISTRARE</button>
+								<AiOutlineUserAdd style={{ color: "#413733", fontSize: "2rem" }} />
 							</Link>
 						</section>
 						{/* <section>

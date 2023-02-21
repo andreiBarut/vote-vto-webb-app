@@ -3,6 +3,7 @@ import { useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import "./Navbar.css";
 import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 	const [userName, setUserName] = useState(null);
@@ -31,10 +32,12 @@ const Navbar = () => {
 				// }}
 				>
 					<li>
-						<div className="navbar-circle">
-							<p>V</p>
-							<p>T</p>
-						</div>
+						<Link to="/">
+							<div className="navbar-circle">
+								<p>V</p>
+								<p>T</p>
+							</div>
+						</Link>
 					</li>
 					<li style={{ color: "rgb(147, 237, 147)" }}>
 						status: logat ca {userName}

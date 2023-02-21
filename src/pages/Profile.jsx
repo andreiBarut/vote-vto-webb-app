@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BiUserPin } from "react-icons/bi";
 
 const Profile = () => {
 	const [userName, setUserName] = useState(null);
@@ -24,24 +25,27 @@ const Profile = () => {
 
 	return (
 		<>
-			<article>
+			<article className="profile-article-container">
 				{console.log("inside return")}
-				<section>
-					<h1>Profilul Meu</h1>
+				<section style={{ textAlign: "center" }}>
+					<h1>PROFILUL MEU</h1>
+					<BiUserPin style={{ fontSize: "5rem" }} />
 					{console.log("below profile", userEmail)}
-					<p>Email : {userEmail}</p>
-					<p>Nume Utilizator: {userName}</p>
+					<section className="profile-article-credentials-container">
+						<p>EMAIL: {userEmail}</p>
+						<p>NUME UTILIZATOR: {userName}</p>
+					</section>
 				</section>
 				<section style={{ display: "flex", flexDirection: "column" }}>
 					<Link to={`/pollCreator`}>
-						<button>crează poll</button>
+						<button>CREAZĂ POLL</button>
 					</Link>
 					<Link to={`/myPolls`}>
-						<button>poll-urile mele</button>
+						<button>POLLURILE MELE</button>
 					</Link>
 
-					<button disabled>schimbă parola</button>
-					<button disabled>sterge contul</button>
+					<button disabled>SCHIMBĂ PAROLA</button>
+					<button disabled>ȘTERGE CONTUL</button>
 				</section>
 			</article>
 		</>

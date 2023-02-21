@@ -65,10 +65,11 @@ const PollCreator = () => {
 
 	return (
 		<>
-			<article>
+			<article className="pollCreator-article-container">
 				<h1>Creare Poll : {userName}</h1>
-				<fieldset>
-					<form>
+				{/* <fieldset> */}
+				<form>
+					<section>
 						<h2>Text problema in Discutie</h2>
 						<textarea
 							rows="14"
@@ -80,6 +81,8 @@ const PollCreator = () => {
 							onChange={handleChange}
 							required={true}
 						></textarea>
+					</section>
+					<section>
 						<h2>Tip Poll</h2>
 						{/* <label htmlFor="pollTypeMultiple">Alegere Multipla</label>
 						<input
@@ -99,8 +102,9 @@ const PollCreator = () => {
 							id="pollTypeSingle"
 							required={true}
 						/>
-						{/* //! SCRIERE LIBERA*/}
-
+					</section>
+					{/* //! SCRIERE LIBERA*/}
+					<section>
 						<h2>Tip Vot</h2>
 						<label htmlFor="votetTypePublic">Vot Public</label>
 						<input
@@ -111,6 +115,7 @@ const PollCreator = () => {
 							id="voteTypePublic"
 							required={true}
 						/>
+						<br />
 						<label htmlFor="votetTypePrivate">Vot Privat</label>
 						<input
 							type="radio"
@@ -120,7 +125,8 @@ const PollCreator = () => {
 							id="voteTypePrivate"
 							required={true}
 						/>
-						{/* <h2>Optiuni</h2>
+					</section>
+					{/* <h2>Optiuni</h2>
 						<label htmlFor="nrOptions">Nr. Optiuni</label>
 						<input
 							type="number"
@@ -130,25 +136,26 @@ const PollCreator = () => {
 							id="nrOptions"
 							required={true}
 						/> */}
-						<br />
-						<h2>Text Optiuni</h2>
-						<label htmlFor="optionsText">
-							Scrie-ti optiunile si separati-le prin virgula astfel: pentru, impotriva,
-							ma abtin (sau orice alta combinatie, atata timp cat sunt separate prin
-							virgula){" "}
-						</label>
-						<br />
-						<input
-							type="text"
-							onChange={handleChange}
-							value={data.optionsText}
-							name="optionsText"
-							id="optionsText"
-							required={true}
-						/>
-						<button onClick={updateDb}>Creaza Poll</button>
-					</form>
-				</fieldset>
+					<br />
+					<h2>Text Optiuni</h2>
+					<label htmlFor="optionsText">
+						Scrie-ti optiunile si separati-le prin virgula astfel: pentru, impotriva,
+						ma abtin (sau orice alta combinatie, atata timp cat sunt separate prin
+						virgula){" "}
+					</label>
+					<br />
+					<input
+						type="text"
+						onChange={handleChange}
+						value={data.optionsText}
+						name="optionsText"
+						id="optionsText"
+						required={true}
+					/>
+					<br />
+					<button onClick={updateDb}>Creaza Poll</button>
+				</form>
+				{/* </fieldset> */}
 			</article>
 		</>
 	);

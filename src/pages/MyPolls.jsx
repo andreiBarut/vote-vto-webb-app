@@ -45,11 +45,17 @@ const MyPolls = () => {
 		<article>
 			<div>
 				<h2>My Polls</h2>
+				<hr></hr>
 				<h4>{userName}</h4>
+				<hr></hr>
 
 				{data.map((element) => (
 					<div key={`element ${element}`}>
-						<Link to={`/pollCreator/vote/${element[0]}`} key={element[0]}>
+						<Link
+							to={`/pollCreator/vote/${element[0]}`}
+							key={element[0]}
+							className="myPolls-link-container"
+						>
 							{element[1]}
 						</Link>
 					</div>

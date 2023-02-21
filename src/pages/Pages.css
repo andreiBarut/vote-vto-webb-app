@@ -80,3 +80,52 @@ button:disabled:hover {
 	color: #ffffff;
 	cursor: default;
 }
+
+.profile-article-container {
+	display: flex;
+	gap: 10px;
+}
+
+.profile-article-container h1 {
+	text-align: center;
+	margin-bottom: 2rem;
+	font-size: 1.5rem;
+}
+
+.profile-article-credentials-container p {
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.pollCreator-article-container {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.pollCreator-article-container h2 {
+	font-weight: bolder;
+}
+
+.pollCreator-article-container textarea {
+	background-color: rgb(186, 186, 186);
+	border: 0;
+	border-radius: 10px;
+	font-family: "Montserrat", sans-serif;
+	width: 50vw;
+	color: #413733;
+	font-size: 1.1rem;
+	height: 20vh;
+}
+
+.pollCreator-article-container input:blank {
+	background-color: red;
+}
+
+.pollCreator-article-container label {
+	width: 20px;
+}
+
+.myPolls-link-container {
+	color: #413733;
+}

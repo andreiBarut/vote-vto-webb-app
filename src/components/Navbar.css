@@ -34,3 +34,9 @@ nav li {
 	align-items: center;
 	font-size: 2rem;
 }
+
+.navbar-circle p,
+a {
+	color: #ffffff;
+	text-decoration: none;
+}
