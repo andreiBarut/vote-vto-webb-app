@@ -10,19 +10,15 @@ nav ul {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	margin: 0 auto;
-	/* height: 12vh; */
-	/* margin: 0; */
-	/* border: 2px solid; */
-	align-items: center;
-	/* padding: 0; */
 	color: #ffffff;
 	font-weight: bold;
+	line-height: 10vh;
 }
 
 nav li {
 	margin: 0;
 	padding: 0;
+	/* border: 2px solid red; */
 }
 
 .navbar-circle {
