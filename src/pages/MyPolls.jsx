@@ -33,7 +33,16 @@ const MyPolls = () => {
 			querySnapshot.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
 				console.log(doc.id, " => ", doc.data());
-				setData((oldArray) => [...oldArray, [doc.id, doc.data().data.textProblem]]);
+				setData((oldArray) => [
+					...oldArray,
+					[
+						doc.id,
+						doc.data().data.textProblem,
+						doc.data().data.voteType,
+						doc.data().date,
+						doc.data().data.active,
+					],
+				]);
 				console.log(data);
 			});
 			setIsLoaded(true);
@@ -48,18 +57,50 @@ const MyPolls = () => {
 				<hr></hr>
 				<h4>{userName}</h4>
 				<hr></hr>
-
-				{data.map((element) => (
-					<div key={`element ${element}`}>
-						<Link
-							to={`/pollCreator/vote/${element[0]}`}
-							key={element[0]}
-							className="myPolls-link-container"
-						>
-							{element[1]}
-						</Link>
-					</div>
-				))}
+				<table>
+					<tr style={{ fontWeight: "bolder", color: "green" }}>
+						<td>TEXT POLL</td>
+						<td>TIP VOT</td>
+						<td>CREAT ÎN DATA DE</td>
+						<td>STATUS POLL</td>
+					</tr>
+					{data.map((element) => (
+						<>
+							<tr key={`element ${element}`}>
+								<td>
+									<Link
+										to={`/pollCreator/vote/${element[0]}`}
+										key={element[0]}
+										className="myPolls-link-container"
+										style={{ color: "purple" }}
+									>
+										{element[1].length > 10
+											? element[1].substring(0, 10) + "..."
+											: element[1]}
+									</Link>
+								</td>
+								<td>
+									{element[2] === "private" ? (
+										<span style={{ color: "purple" }}> {element[2]}</span>
+									) : (
+										<span style={{ color: "orange" }}> {element[2]}</span>
+									)}
+								</td>
+								<td>
+									<span style={{ color: "blue" }}>{element[3]}</span>
+								</td>
+								<td>
+									{element[4] ? (
+										<span style={{ color: "green" }}>activ</span>
+									) : (
+										<span style={{ color: "red" }}>inactiv</span>
+									)}
+								</td>
+							</tr>
+							<hr></hr>
+						</>
+					))}
+				</table>
 			</div>
 		</article>
 	);

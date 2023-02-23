@@ -82,6 +82,7 @@ const Results = () => {
 				<div>
 					<h2>REZULTATE PENTRU</h2>
 					<h3>TEXT POLL : {resultsData.data.textProblem}</h3>
+					<h4>Creat la data de : {resultsData.date}</h4>
 					<p style={{ color: "blue" }}>
 						TIP VOT : {resultsData.data.voteType === "private" ? "privat" : "public"}
 					</p>

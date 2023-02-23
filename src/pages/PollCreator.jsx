@@ -4,11 +4,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
+import moment from "moment/moment";
 
 const PollCreator = () => {
 	const [userName, setUserName] = useState(null);
 	const [userId, setUserId] = useState(null);
 	const [docRefId, setDocRefId] = useState(null);
+	const formatDate = moment().format("DD-MM-YYYY");
+
 	const initialValues = {
 		pollAuthorId: "",
 		pollAuthorName: "",
@@ -52,6 +55,7 @@ const PollCreator = () => {
 				const docRef = await addDoc(collection(db, "polls"), {
 					data,
 					voters: "",
+					date: moment().format("DD-MM-YYYY hh:mm"),
 				});
 				setDocRefId(docRef.id);
 				console.log(docRef.id);
