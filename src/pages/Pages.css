@@ -139,6 +139,15 @@ button:disabled:hover {
 	color: #413733;
 }
 
+.results-article-container div {
+	/* text-align: center; */
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+}
+
 .results-article-container h3 {
 	color: orange;
 }
