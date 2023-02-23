@@ -82,23 +82,45 @@ const Results = () => {
 				<div>
 					<h2>REZULTATE PENTRU</h2>
 					<h3>TEXT POLL : {resultsData.data.textProblem}</h3>
+					<p style={{ color: "blue" }}>
+						TIP VOT : {resultsData.data.voteType === "private" ? "privat" : "public"}
+					</p>
 					<div>
-						{Object.entries(resultsData.results).map((element) => (
-							<p className="results-result-p">
-								<span style={{ color: "green", fontWeight: "bold" }}>
-									{element[0] + " "}
-								</span>
-								=&gt;
-								<span style={{ fontWeight: "bold" }}>
-									&nbsp;&nbsp;{element[1] + " "} =&gt;
-								</span>
-								<span
-									style={{ fontWeight: "bolder", color: "blue", fontSize: "1.5rem" }}
-								>
-									&nbsp;&nbsp;{element[1].length}
-								</span>
-							</p>
-						))}
+						{Object.entries(resultsData.results).map(
+							(element) =>
+								resultsData.data.voteType === "public" && (
+									<p className="results-result-p">
+										<span style={{ color: "green", fontWeight: "bold" }}>
+											{element[0] + " "}
+										</span>
+										=&gt;
+										<span style={{ fontWeight: "bold" }}>
+											&nbsp;&nbsp;{element[1] + " "} =&gt;
+										</span>
+										<span
+											style={{ fontWeight: "bolder", color: "blue", fontSize: "1.5rem" }}
+										>
+											&nbsp;&nbsp;{element[1].length}
+										</span>
+									</p>
+								)
+						)}
+						{Object.entries(resultsData.results).map(
+							(element) =>
+								resultsData.data.voteType === "private" && (
+									<p className="results-result-p">
+										<span style={{ color: "green", fontWeight: "bold" }}>
+											{element[0] + " "}
+										</span>
+										=&gt;
+										<span
+											style={{ fontWeight: "bolder", color: "blue", fontSize: "1.5rem" }}
+										>
+											&nbsp;&nbsp;{element[1].length}
+										</span>
+									</p>
+								)
+						)}
 
 						{resultsData.data.active && resultsData.data.pollAuthorId === userId && (
 							<button onClick={handleStopVote}>STOP VOT</button>

@@ -202,30 +202,29 @@ const Vote = () => {
 							<button onClick={collectVote}>Voteaza</button>
 						</form>
 					)}
-					{formData.data.pollType === "single" &&
-						!formData.voters.includes(userId) && (
-							<form>
-								<p>O singura varianta de votare</p>
-								{formData.data.optionsText.split(",").map((element) => (
-									<div key={`div ${element}`}>
-										<label htmlFor={`element ${element}`} key={`label ${element}`}>
-											{element}
-										</label>
-										<input
-											type="radio"
-											name={`radio`}
-											id={`element ${element}`}
-											value={element}
-											key={`radio ${element}`}
-											onChange={handleChange}
-										/>
-									</div>
-								))}
-								{!formData.voters.includes(userId) && (
-									<button onClick={collectVote}>Voteaza</button>
-								)}
-							</form>
-						)}
+					{!formData.voters.includes(userId) && (
+						<form>
+							<p>O singura varianta de votare</p>
+							{formData.data.optionsText.split(",").map((element) => (
+								<div key={`div ${element}`}>
+									<label htmlFor={`element ${element}`} key={`label ${element}`}>
+										{element}
+									</label>
+									<input
+										type="radio"
+										name={`radio`}
+										id={`element ${element}`}
+										value={element}
+										key={`radio ${element}`}
+										onChange={handleChange}
+									/>
+								</div>
+							))}
+							{!formData.voters.includes(userId) && (
+								<button onClick={collectVote}>Voteaza</button>
+							)}
+						</form>
+					)}
 
 					{formData.voters.includes(userId) && (
 						<div

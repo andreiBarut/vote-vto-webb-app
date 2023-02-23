@@ -15,7 +15,7 @@ const PollCreator = () => {
 		textProblem: "",
 		nrOptions: "",
 		optionsText: "",
-		pollType: "",
+		// pollType: "",
 		voteType: "",
 		voters: "",
 		active: true,
@@ -89,7 +89,7 @@ const PollCreator = () => {
 						></textarea>
 					</section>
 					<section>
-						<h2>TIP POLL</h2>
+						{/* <h2>TIP POLL</h2> */}
 						{/* <label htmlFor="pollTypeMultiple">Alegere Multipla</label>
 						<input
 							type="radio"
@@ -99,7 +99,7 @@ const PollCreator = () => {
 							id="pollTypeMultiple"
 							required={true}
 						/> */}
-						<label htmlFor="votetTypePublic">O Singura Varianta de Raspuns</label>
+						{/* <label htmlFor="votetTypePublic">O Singura Varianta de Raspuns</label>
 						<input
 							type="radio"
 							onChange={handleChange}
@@ -107,12 +107,15 @@ const PollCreator = () => {
 							name="pollType"
 							id="pollTypeSingle"
 							required={true}
-						/>
+						/> */}
 					</section>
 					{/* //! SCRIERE LIBERA*/}
 					<section>
 						<h2>TIP VOT</h2>
-						<label htmlFor="votetTypePublic">Vot Public</label>
+						<label htmlFor="votetTypePublic">
+							Vot Public{" "}
+							<span style={{ color: "blue" }}>(numele votanților este public)</span>
+						</label>
 						<input
 							type="radio"
 							onChange={handleChange}
@@ -122,7 +125,10 @@ const PollCreator = () => {
 							required={true}
 						/>
 						<br />
-						<label htmlFor="votetTypePrivate">Vot Privat</label>
+						<label htmlFor="votetTypePrivate">
+							Vot privat
+							<span style={{ color: "blue" }}>(numele votanților este ascuns)</span>
+						</label>
 						<input
 							type="radio"
 							onChange={handleChange}
