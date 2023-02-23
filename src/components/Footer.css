@@ -1,17 +1,17 @@
 .footer-container {
 	background-color: #6f625c;
-	/* width: 90vw; */
-	/* bottom: 0; */
-	/* height: 100px; */
-	/* height: fit-content; */
 	position: sticky;
 	align-items: center;
 	display: flex;
-	/* height: 10vh; */
 	margin: 0 auto;
 	justify-content: center;
-	/* margin-top: auto; */
-	/* margin-top: 10vh; */
 	width: 100vw;
 	height: 10vh;
+	text-align: center;
+}
+
+@media (max-width: 900px) {
+	.footer-container {
+		font-size: smaller;
+	}
 }
