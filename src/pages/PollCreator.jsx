@@ -18,6 +18,7 @@ const PollCreator = () => {
 		pollType: "",
 		voteType: "",
 		voters: "",
+		active: true,
 	};
 	const navigateTo = useNavigate();
 	useEffect(() => {
