@@ -111,7 +111,7 @@ const Home = () => {
 						</section>
 						<section style={{ marginTop: "1rem" }}>
 							<a
-								href="#"
+								href="https://youtu.be/um8LHSIeiaU"
 								style={{
 									color: "red",
 									display: "flex",
@@ -119,6 +119,7 @@ const Home = () => {
 									alignItems: "center",
 									flexDirection: "column",
 								}}
+								target="_blank"
 							>
 								urmărește un video demonstrativ în limba română (work in progress)
 								<AiFillYoutube style={{ fontSize: "4rem" }} />
@@ -184,7 +185,7 @@ const Home = () => {
 
 						<section style={{ marginTop: "1rem" }}>
 							<a
-								href="#"
+								href="https://youtu.be/um8LHSIeiaU"
 								style={{
 									color: "red",
 									display: "flex",
@@ -192,6 +193,7 @@ const Home = () => {
 									alignItems: "center",
 									flexDirection: "column",
 								}}
+								target="_blank"
 							>
 								urmărește un video demonstrativ în limba română (work in progress)
 								<AiFillYoutube style={{ fontSize: "4rem" }} />
