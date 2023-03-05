@@ -23,15 +23,17 @@ const Home = () => {
 		window.location.reload();
 	};
 
-	onAuthStateChanged(auth, (user) => {
-		if (user) {
-			setUserName(user.displayName);
-			setUserEmail(user.email);
-			setUserId(user.uid);
-		} else {
-			return;
-		}
-	});
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUserName(user.displayName);
+				setUserEmail(user.email);
+				setUserId(user.uid);
+			} else {
+				return;
+			}
+		});
+	}, []);
 
 	//^CHECK IF USER IS ADMIN
 	useEffect(() => {
@@ -77,11 +79,17 @@ const Home = () => {
 								<p style={{ color: "green", fontWeight: "600" }}>
 									Creaza proprille polluri personalizate
 								</p>
-								<li>Creaza-ti un cont sau loghează-te în contul tău preexistent</li>
-								<li>Creaza-ti propriul poll folosind formularul</li>
-								<li>Distribuie linkul generat votantilor</li>
 								<li>
-									Apasa pe butonul ,,STOP VOT” pentru a opri voturile la pollul tau
+									Conturile se creeaza de către adiminstratori. Contactați-i pe cei din
+									consiliul de conducere pentru a vă furniza un cont și o parolă, pe care
+									ulterior o puteți schimba.
+								</li>
+								<li>Creaza-ti propriul poll folosind formularul (admin only)</li>
+								<li>Distribuie linkul generat votantilor</li>
+								<li>Votează, apoi vezi rezultatele.</li>
+								<li>
+									Apasa pe butonul ,,STOP VOT” pentru a opri voturile la pollul tău
+									(admin only)
 								</li>
 							</ol>
 						</section>
@@ -131,11 +139,17 @@ const Home = () => {
 								<p style={{ color: "green", fontWeight: "600" }}>
 									Creaza proprille polluri personalizate
 								</p>
-								<li>Creaza-ti un cont sau loghează-te în contul tău preexistent</li>
-								<li>Creaza-ti propriul poll folosind formularul</li>
-								<li>Distribuie linkul generat votantilor</li>
 								<li>
-									Apasa pe butonul ,,STOP VOT” pentru a opri voturile la pollul tau
+									Conturile se creează de către adiminstratori. Contactați-i pe cei din
+									consiliul de conducere pentru a vă furniza un cont și o parolă, parolă
+									pe care ulterior o puteți schimba.
+								</li>
+								<li>Creaza-ti propriul poll folosind formularul (admin only)</li>
+								<li>Distribuie linkul generat votantilor</li>
+								<li>Votează, apoi vezi rezultatele.</li>
+								<li>
+									Apasa pe butonul ,,STOP VOT” pentru a opri voturile la pollul tău
+									(admin only)
 								</li>
 							</ol>
 						</section>

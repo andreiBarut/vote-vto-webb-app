@@ -1,6 +1,6 @@
 import { auth, db } from "../firebase";
 import { Link } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, updatePassword, deleteUser } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,7 @@ const Profile = () => {
 
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
+			console.log("HERE IS USER", user);
 			setUserName(user.displayName);
 			setUserEmail(user.email);
 			setUserId(user.uid);
@@ -45,6 +46,24 @@ const Profile = () => {
 		getUserAdmin();
 	}, [userId]);
 
+	const deleteAccount = (e) => {
+		if (
+			confirm(
+				"Sunteți sigur că doriți să ștergeți contul? Această operațiune este ireversibilă!"
+			) === true
+		) {
+			deleteUser(auth.currentUser)
+				.then(() => {
+					console.log("User deleted");
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		} else {
+			return;
+		}
+	};
+
 	return (
 		<>
 			<article className="profile-article-container">
@@ -70,9 +89,10 @@ const Profile = () => {
 							</Link>
 						</>
 					)}
-
-					<button disabled>SCHIMBĂ PAROLA</button>
-					<button disabled>ȘTERGE CONTUL</button>
+					<Link to={`/profile/changePassword`}>
+						<button>SCHIMBĂ PAROLA</button>
+					</Link>
+					<button onClick={deleteAccount}>ȘTERGE CONTUL</button>
 				</section>
 			</article>
 		</>

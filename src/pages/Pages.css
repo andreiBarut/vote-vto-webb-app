@@ -16,7 +16,7 @@ article {
 }
 
 .home-article-container {
-	gap: 10px;
+	text-align: center;
 }
 
 article h1,
@@ -161,4 +161,22 @@ button:disabled:hover {
 table td {
 	/* border: 2px solid #413733; */
 	padding: 5px;
+}
+
+.changepass-article-contaienr {
+	display: flex;
+}
+
+.changepass-form {
+	display: flex;
+	flex-direction: column;
+	/* gap: 1.5rem; */
+	margin: 1rem;
+	/* border: 2px solid red; */
+	justify-content: center;
+	align-items: center;
+}
+
+.changepass-form input {
+	margin: 1rem;
 }

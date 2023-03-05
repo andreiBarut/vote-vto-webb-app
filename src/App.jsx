@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Vote from "./pages/Vote";
 import MyPolls from "./pages/MyPolls";
 import Results from "./pages/Results";
+import ChangePass from "./pages/ChangePass";
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 						<Route path="/pollCreator/vote/:pollId" element={<Vote />} />
 						<Route path="/myPolls" element={<MyPolls />} />
 						<Route path="/results/:pollId" element={<Results />} />
+						<Route path="/profile/changePassword" element={<ChangePass />} />
 					</Routes>
 				</div>
 				<Footer />
