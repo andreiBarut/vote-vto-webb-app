@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { useState } from "react";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import "./Pages.css";
 import logo from "../assets/images/amvvd_logo.png";
 import {
@@ -16,6 +16,7 @@ const Home = () => {
 	const [userName, setUserName] = useState(null);
 	const [userEmail, setUserEmail] = useState(null);
 	const [userId, setUserId] = useState(null);
+	const [isAdmin, setIsAdmin] = useState(false);
 
 	const handleDisconnect = () => {
 		signOut(auth);
@@ -31,6 +32,27 @@ const Home = () => {
 			return;
 		}
 	});
+
+	//^CHECK IF USER IS ADMIN
+	useEffect(() => {
+		const getUserAdmin = async () => {
+			const docRef = doc(db, "adminUsers", "dNocQtKgI2FMHqQ0okKG");
+			const docSnap = await getDoc(docRef);
+
+			console.log("current doc ref :", docSnap.id);
+			if (docSnap.exists()) {
+				console.log("Document data:", docSnap.data());
+				console.log(userId in docSnap.data().admins);
+				if (userId in docSnap.data().admins) {
+					setIsAdmin(true);
+				}
+			} else {
+				// doc.data() will be undefined in this case
+				console.log("No suchs document!");
+			}
+		};
+		getUserAdmin();
+	}, [userId]);
 
 	return (
 		<>
@@ -80,6 +102,16 @@ const Home = () => {
 				</section> */}
 					</>
 				)}
+				<>
+					<section>
+						{isAdmin && (
+							<Link to="signup" disabled>
+								<button>ÎNREGISTRARE</button>
+								<AiOutlineUserAdd style={{ color: "#413733", fontSize: "2rem" }} />
+							</Link>
+						)}
+					</section>
+				</>
 				{!userName && (
 					<>
 						<section>
@@ -114,12 +146,7 @@ const Home = () => {
 								<AiOutlineLogin style={{ color: "#413733", fontSize: "2rem" }} />
 							</Link>
 						</section>
-						<section>
-							<Link to="signup" disabled>
-								<button>ÎNREGISTRARE</button>
-								<AiOutlineUserAdd style={{ color: "#413733", fontSize: "2rem" }} />
-							</Link>
-						</section>
+
 						{/* <section>
 					<a href="#">urmărește tutorialul în limba română</a>
 				</section> */}

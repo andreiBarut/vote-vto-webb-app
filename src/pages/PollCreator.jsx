@@ -11,6 +11,7 @@ const PollCreator = () => {
 	const [userId, setUserId] = useState(null);
 	const [docRefId, setDocRefId] = useState(null);
 	const formatDate = moment().format("DD-MM-YYYY");
+	const navigateTo = useNavigate();
 
 	const initialValues = {
 		pollAuthorId: "",
@@ -23,7 +24,9 @@ const PollCreator = () => {
 		voters: "",
 		active: true,
 	};
-	const navigateTo = useNavigate();
+
+	const [data, setData] = useState(initialValues);
+
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
@@ -40,8 +43,6 @@ const PollCreator = () => {
 			}
 		});
 	}, []);
-
-	const [data, setData] = useState(initialValues);
 
 	const handleChange = (e) => {
 		setData({ ...data, [e.target.name]: e.target.value });
