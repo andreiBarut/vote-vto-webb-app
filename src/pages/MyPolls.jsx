@@ -9,6 +9,7 @@ const MyPolls = () => {
 	const [userName, setUserName] = useState(null);
 	const [userId, setUserId] = useState(null);
 	const [data, setData] = useState([]);
+	const [toDelPoll, setToDellPol] = useState(null);
 
 	//^GETTING CURRENT USER AND USER ID
 	useEffect(() => {
@@ -50,6 +51,11 @@ const MyPolls = () => {
 		getDocuments();
 	}, [userName]);
 
+	const deletePoll = (e) => {
+		setToDellPol(e.target.name);
+		console.log(toDelPoll);
+	};
+
 	return (
 		<article>
 			<div>
@@ -71,6 +77,7 @@ const MyPolls = () => {
 									<Link
 										to={`/pollCreator/vote/${element[0]}`}
 										key={element[0]}
+										title={element[1]}
 										className="myPolls-link-container"
 										style={{ color: "purple" }}
 									>

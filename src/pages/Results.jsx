@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Results = () => {
 	const pollId = useParams();
@@ -13,6 +14,8 @@ const Results = () => {
 	const [currentDocId, setCurrentDocId] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [nrOfVotes, setNrOfVotes] = useState(null);
+
+	const navigateTo = useNavigate();
 
 	//^GETTING CURRENT USER AND USER ID
 	useEffect(() => {
@@ -77,6 +80,23 @@ const Results = () => {
 		updateStopVote();
 	};
 
+	const handleDeletePoll = async () => {
+		if (
+			confirm(
+				"Sunteți sigur că doriți să ștergeți acest poll? Această operațiune este ireversibilă!"
+			) === true
+		) {
+			alert(
+				"Acest poll a fost șters cu succes! Redirecționare către pagina de profil"
+			);
+			await deleteDoc(doc(db, "polls", currentDocId));
+			console.log("poll deleted");
+			navigateTo("/profile");
+		} else {
+			return;
+		}
+	};
+
 	return (
 		<article className="results-article-container">
 			{isLoaded && (
@@ -127,10 +147,16 @@ const Results = () => {
 						)}
 
 						{resultsData.data.active && resultsData.data.pollAuthorId === userId && (
-							<button onClick={handleStopVote}>STOP VOT</button>
+							<>
+								<button onClick={handleStopVote}>STOP VOT</button>
+								<button onClick={handleDeletePoll}>ȘTERGE POLL</button>
+							</>
 						)}
 						{!resultsData.data.active && (
-							<p style={{ color: "red" }}>Votarea a fost închisă de către autor!</p>
+							<>
+								<p style={{ color: "red" }}>Votarea a fost închisă de către autor!</p>
+								<button onClick={handleDeletePoll}>ȘTERGE POLL</button>
+							</>
 						)}
 					</div>
 				</div>

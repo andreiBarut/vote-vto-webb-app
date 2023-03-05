@@ -114,7 +114,9 @@ const Home = () => {
 					<section>
 						{isAdmin && (
 							<Link to="signup" disabled>
-								<button>ÎNREGISTRARE</button>
+								<p style={{ color: "purple", display: "inline" }}>
+									ÎNREGISTREAZĂ UN NOU UTILIZATOR
+								</p>
 								<AiOutlineUserAdd style={{ color: "#413733", fontSize: "2rem" }} />
 							</Link>
 						)}
