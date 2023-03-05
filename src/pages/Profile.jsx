@@ -1,7 +1,8 @@
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { Link } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiUserPin } from "react-icons/bi";
 import logo from "../assets/images/amvvd_logo.png";
@@ -9,6 +10,7 @@ const Profile = () => {
 	const [userName, setUserName] = useState(null);
 	const [userEmail, setUserEmail] = useState(null);
 	const [userId, setUserId] = useState(null);
+	const [isAdmin, setIsAdmin] = useState(false);
 
 	const navigateTo = useNavigate();
 
@@ -22,6 +24,26 @@ const Profile = () => {
 			navigateTo("/");
 		}
 	});
+
+	useEffect(() => {
+		const getUserAdmin = async () => {
+			const docRef = doc(db, "adminUsers", "dNocQtKgI2FMHqQ0okKG");
+			const docSnap = await getDoc(docRef);
+
+			console.log("current doc ref :", docSnap.id);
+			if (docSnap.exists()) {
+				console.log("Document data:", docSnap.data());
+				console.log(userId in docSnap.data().admins);
+				if (userId in docSnap.data().admins) {
+					setIsAdmin(true);
+				}
+			} else {
+				// doc.data() will be undefined in this case
+				console.log("No suchs document!");
+			}
+		};
+		getUserAdmin();
+	}, [userId]);
 
 	return (
 		<>
@@ -38,12 +60,16 @@ const Profile = () => {
 					</section>
 				</section>
 				<section style={{ display: "flex", flexDirection: "column" }}>
-					<Link to={`/pollCreator`}>
-						<button>CREAZĂ POLL</button>
-					</Link>
-					<Link to={`/myPolls`}>
-						<button>POLLURILE MELE</button>
-					</Link>
+					{isAdmin && (
+						<>
+							<Link to={`/pollCreator`}>
+								<button>CREAZĂ POLL</button>
+							</Link>
+							<Link to={`/myPolls`}>
+								<button>POLLURILE MELE</button>
+							</Link>
+						</>
+					)}
 
 					<button disabled>SCHIMBĂ PAROLA</button>
 					<button disabled>ȘTERGE CONTUL</button>
