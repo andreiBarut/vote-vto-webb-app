@@ -89,10 +89,31 @@ const Profile = () => {
 							</Link>
 						</>
 					)}
-					<Link to={`/profile/changePassword`}>
-						<button>SCHIMBĂ PAROLA</button>
-					</Link>
-					<button onClick={deleteAccount}>ȘTERGE CONTUL</button>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "column",
+							justifyContent: "center",
+							// alignItems: "center",
+							marginTop: "1rem",
+							gap: "0.7rem",
+						}}
+					>
+						<Link to={`/profile/changePassword`}>
+							<p style={{ color: "purple", display: "inline" }}>SCHIMBĂ PAROLA</p>
+						</Link>
+						<p
+							style={{
+								color: "purple",
+								display: "inline",
+								fontWeight: "600",
+								cursor: "pointer",
+							}}
+							onClick={deleteAccount}
+						>
+							ȘTERGE CONTUL
+						</p>
+					</div>
 				</section>
 			</article>
 		</>
