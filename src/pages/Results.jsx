@@ -12,6 +12,7 @@ const Results = () => {
 	const [resultsData, setResultsData] = useState(null);
 	const [currentDocId, setCurrentDocId] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [nrOfVotes, setNrOfVotes] = useState(null);
 
 	//^GETTING CURRENT USER AND USER ID
 	useEffect(() => {
@@ -87,6 +88,7 @@ const Results = () => {
 						TIP VOT : {resultsData.data.voteType === "private" ? "privat" : "public"}
 					</p>
 					<div>
+						<p>Total Voturi : {resultsData.voters.length}</p>
 						{Object.entries(resultsData.results).map(
 							(element) =>
 								resultsData.data.voteType === "public" && (
@@ -100,6 +102,7 @@ const Results = () => {
 										</span>
 										<span
 											style={{ fontWeight: "bolder", color: "blue", fontSize: "1.5rem" }}
+											key={`voteNr ${element[1]}`}
 										>
 											&nbsp;&nbsp;{element[1].length}
 										</span>
