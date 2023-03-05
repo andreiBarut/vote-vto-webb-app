@@ -10,6 +10,7 @@ import {
 	AiOutlineLogin,
 	AiOutlineUser,
 	AiOutlineLogout,
+	AiFillYoutube,
 } from "react-icons/ai";
 
 const Home = () => {
@@ -77,19 +78,22 @@ const Home = () => {
 							</section>
 							<ol>
 								<p style={{ color: "green", fontWeight: "600" }}>
-									Creaza proprille polluri personalizate
+									Crează proprille polluri personalizate
 								</p>
 								<li>
-									Conturile se creeaza de către adiminstratori. Contactați-i pe cei din
+									Conturile se creează de către adiminstratori. Contactați-i pe cei din
 									consiliul de conducere pentru a vă furniza un cont și o parolă, pe care
 									ulterior o puteți schimba.
 								</li>
-								<li>Creaza-ti propriul poll folosind formularul (admin only)</li>
-								<li>Distribuie linkul generat votantilor</li>
+								<li>Crează-ți propriul poll folosind formularul (admin only)</li>
+								<li>Distribuie linkul generat votanților</li>
 								<li>Votează, apoi vezi rezultatele.</li>
 								<li>
 									Apasa pe butonul ,,STOP VOT” pentru a opri voturile la pollul tău
 									(admin only)
+								</li>
+								<li>
+									Apasă pe butonul ,,ȘTERGE POLL” pentru a șterge poll-ul (admin only)
 								</li>
 							</ol>
 						</section>
@@ -104,6 +108,21 @@ const Home = () => {
 								<button>DECONECTARE</button>
 								<AiOutlineLogout style={{ color: "#413733", fontSize: "2rem" }} />
 							</Link>
+						</section>
+						<section style={{ marginTop: "1rem" }}>
+							<a
+								href="#"
+								style={{
+									color: "red",
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									flexDirection: "column",
+								}}
+							>
+								urmărește un video demonstrativ în limba română (work in progress)
+								<AiFillYoutube style={{ fontSize: "4rem" }} />
+							</a>
 						</section>
 						{/* <section>
 					<a href="#">urmărește tutorialul în limba română</a>
@@ -163,9 +182,21 @@ const Home = () => {
 							</Link>
 						</section>
 
-						{/* <section>
-					<a href="#">urmărește tutorialul în limba română</a>
-				</section> */}
+						<section style={{ marginTop: "1rem" }}>
+							<a
+								href="#"
+								style={{
+									color: "red",
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									flexDirection: "column",
+								}}
+							>
+								urmărește un video demonstrativ în limba română (work in progress)
+								<AiFillYoutube style={{ fontSize: "4rem" }} />
+							</a>
+						</section>
 					</>
 				)}
 			</article>
