@@ -42,7 +42,6 @@ const Home = () => {
 			const docRef = doc(db, "adminUsers", "dNocQtKgI2FMHqQ0okKG");
 			const docSnap = await getDoc(docRef);
 
-			console.log("current doc ref :", docSnap.id);
 			if (docSnap.exists()) {
 				console.log("Document data:", docSnap.data());
 				console.log(userId in docSnap.data().admins);
@@ -51,7 +50,7 @@ const Home = () => {
 				}
 			} else {
 				// doc.data() will be undefined in this case
-				console.log("No suchs document!");
+				console.log("No such document!");
 			}
 		};
 		getUserAdmin();
@@ -81,7 +80,7 @@ const Home = () => {
 									Crează proprille polluri personalizate
 								</p>
 								<li>
-									Conturile se creează de către adiminstratori. Contactați-i pe cei din
+									Conturile se creează de către administratori. Contactați-i pe cei din
 									consiliul de conducere pentru a vă furniza un cont și o parolă, pe care
 									ulterior o puteți schimba.
 								</li>
@@ -125,9 +124,6 @@ const Home = () => {
 								<AiFillYoutube style={{ fontSize: "4rem" }} />
 							</a>
 						</section>
-						{/* <section>
-					<a href="#">urmărește tutorialul în limba română</a>
-				</section> */}
 					</>
 				)}
 				<>
@@ -162,7 +158,7 @@ const Home = () => {
 									Creaza proprille polluri personalizate
 								</p>
 								<li>
-									Conturile se creează de către adiminstratori. Contactați-i pe cei din
+									Conturile se creează de către administratori. Contactați-i pe cei din
 									consiliul de conducere pentru a vă furniza un cont și o parolă, parolă
 									pe care ulterior o puteți schimba.
 								</li>
@@ -195,7 +191,7 @@ const Home = () => {
 								}}
 								target="_blank"
 							>
-								urmărește un video demonstrativ în limba română (work in progress)
+								urmărește un video demonstrativ în limba română
 								<AiFillYoutube style={{ fontSize: "4rem" }} />
 							</a>
 						</section>

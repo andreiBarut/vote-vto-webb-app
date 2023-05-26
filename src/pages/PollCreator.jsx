@@ -78,7 +78,7 @@ const PollCreator = () => {
 						{userName}
 					</span>{" "}
 				</h1>
-				{/* <fieldset> */}
+
 				<form>
 					<section>
 						<h2>TEXT PROBLEMĂ</h2>
@@ -172,7 +172,6 @@ const PollCreator = () => {
 					<br />
 					<button onClick={updateDb}>CREAZĂ POLL</button>
 				</form>
-				{/* </fieldset> */}
 			</article>
 		</>
 	);

@@ -81,9 +81,11 @@ const MyPolls = () => {
 										className="myPolls-link-container"
 										style={{ color: "purple" }}
 									>
-										{element[1].length > 10
-											? element[1].substring(0, 10) + "..."
-											: element[1]}
+										<p title={element[1]}>
+											{element[1].length > 10
+												? element[1].substring(0, 50) + "..."
+												: element[1]}
+										</p>
 									</Link>
 								</td>
 								<td>
