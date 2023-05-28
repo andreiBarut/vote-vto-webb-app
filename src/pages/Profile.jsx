@@ -4,8 +4,8 @@ import { onAuthStateChanged, updatePassword, deleteUser } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { BiUserPin } from "react-icons/bi";
 import logo from "../assets/images/amvvd_logo.png";
+
 const Profile = () => {
 	const [userName, setUserName] = useState(null);
 	const [userEmail, setUserEmail] = useState(null);
