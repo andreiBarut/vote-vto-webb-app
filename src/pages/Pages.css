@@ -12,17 +12,9 @@ article {
 	flex-wrap: wrap;
 }
 
-.home-article-container {
-	text-align: center;
-}
-
 article h1,
 h4 {
 	text-shadow: 0px 2px 2px #4137334c;
-}
-
-.home-article-container img {
-	height: 100px;
 }
 
 ol {
@@ -82,6 +74,18 @@ button:disabled:hover {
 	background-color: #4137333b;
 	color: #ffffff;
 	cursor: default;
+}
+
+table td {
+	padding: 5px;
+}
+
+.home-article-container {
+	text-align: center;
+}
+
+.home-article-container img {
+	height: 100px;
 }
 
 .profile-article-container {
@@ -152,10 +156,6 @@ button:disabled:hover {
 	border: 2px solid #413733;
 	padding: 2rem;
 	border-radius: 10px;
-}
-
-table td {
-	padding: 5px;
 }
 
 .changepass-article-contaienr {

@@ -20,7 +20,6 @@ const SignUp = () => {
 
 	const handleChangePassword = (e) => {
 		setUserPassword(e.target.value);
-		console.log(userPassword);
 	};
 
 	const handleChangeName = (e) => {

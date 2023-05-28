@@ -94,7 +94,6 @@ const Profile = () => {
 							display: "flex",
 							flexDirection: "column",
 							justifyContent: "center",
-							// alignItems: "center",
 							marginTop: "1rem",
 							gap: "0.7rem",
 						}}
